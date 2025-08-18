@@ -65,7 +65,7 @@ export const FileUpload = forwardRef<FileUploadHandle, FileUploadProps>(
           {/* Button */}
           <Button
             type="button"
-            variant="ghost"
+            variant="outline"
             className="text-custom-rose-900 hover:text-custom-rose-900 hover:bg-transparent"
           >
             {/* Icon */}
