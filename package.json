@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build --no-lint",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "vercel-build": "TSC_COMPILE_ON_ERROR=true next build --no-lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",

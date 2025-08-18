@@ -6,8 +6,8 @@ import { fetchProductDetails } from "@/lib/apis/product.api";
 
 export default async function AddProductpage({ params }: { params: { id: string } }) {
   const data = await fetchProductDetails(params.id);
-  const categoriesData = await fetchCategories();
-  const occasionsData = await fetchOccasions();
+  const categoriesData = await fetchCategories({});
+  const occasionsData = await fetchOccasions({});
 
   return (
     <>

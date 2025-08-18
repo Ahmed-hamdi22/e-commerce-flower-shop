@@ -34,18 +34,24 @@ export default function ProductCarousel({ product }: ProductPropes) {
     });
   }, [api, thumbsApi]);
 
-
   return (
     <div className="w-[478.66px] flex flex-col">
       <div className="mb-2">
         {/* Carousel */}
         <Carousel setApi={setApi}>
           <CarouselContent>
-            {images.map((img: string,index: number) => (
-              <CarouselItem key={index} >
+            {images.map((img: string, index: number) => (
+              <CarouselItem key={index}>
                 <div className="relative w-full h-[478.66px]">
                   {/* Image */}
-                  <Image src={img} alt={product.title} fill className="object-cover rounded-lg" />
+                  {img && (
+                    <Image
+                      src={img}
+                      alt={product.title ?? "Product Image"}
+                      fill
+                      className="object-cover rounded-lg"
+                    />
+                  )}{" "}
                 </div>
               </CarouselItem>
             ))}
@@ -78,7 +84,14 @@ export default function ProductCarousel({ product }: ProductPropes) {
                   )}
                 >
                   {/* Image */}
-                  <Image src={img} alt={product.title} fill className="object-cover" />
+                  {img && (
+                    <Image
+                      src={img}
+                      alt={product.title ?? "Product Image"}
+                      fill
+                      className="object-cover"
+                    />
+                  )}{" "}
                 </button>
               </CarouselItem>
             ))}
