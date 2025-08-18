@@ -19,7 +19,6 @@ type Product = {
   price: number;
   priceAfterDiscount?: number;
   rating?: number;
-  // Add other properties as needed
 };
 
 type ProductCardProps = {
