@@ -10,7 +10,7 @@ import CompaniesSection from "./_components/partner-companies";
 
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
   // Variables
-  const payload = await fetchCategories();
+  const payload = await fetchCategories(searchParams);
 
   return (
     <main className="w-full">
