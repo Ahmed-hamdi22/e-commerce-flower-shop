@@ -9,7 +9,7 @@ import React from "react";
 import { getTranslations } from "next-intl/server";
 import ProductCard from "@/components/features/product/product-card";
 
-type Product = {
+type ProductType = {
   id: string;
   _id: string;
   imgCover: string;
@@ -24,7 +24,8 @@ async function fetchProducts() {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API}/filtered-products?category=673c46fd1159920171827c85&sort=-sold`,
     );
-    const payload: APIResponse<PaginatedResponse<{ products: Product[] }>> = await response.json();
+    const payload: APIResponse<PaginatedResponse<{ products: ProductType[] }>> =
+      await response.json();
 
     if ("error" in payload) {
       throw new Error(payload.error);
@@ -63,7 +64,7 @@ export default async function BestSellerCarousel() {
         >
           {/* Carousel content */}
           <CarouselContent>
-            {payload?.products.map((product: Product, index: number) => (
+            {payload?.products.map((product: ProductType, index: number) => (
               <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/3">
                 <ProductCard product={product} key={index} />
               </CarouselItem>
