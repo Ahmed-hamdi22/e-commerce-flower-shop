@@ -9,6 +9,16 @@ import React from "react";
 import { getTranslations } from "next-intl/server";
 import ProductCard from "@/components/features/product/product-card";
 
+type Product = {
+  id: string;
+  _id: string;
+  imgCover: string;
+  title: string;
+  price: number;
+  priceAfterDiscount?: number;
+  rating?: number;
+};
+
 async function fetchProducts() {
   try {
     const response = await fetch(

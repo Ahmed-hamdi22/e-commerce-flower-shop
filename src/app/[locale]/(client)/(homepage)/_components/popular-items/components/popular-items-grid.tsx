@@ -2,6 +2,16 @@ import { getTranslations } from "next-intl/server";
 import ProductCard from "@/components/features/product/product-card";
 import React from "react";
 
+type Product = {
+  id: string;
+  _id: string;
+  imgCover: string;
+  title: string;
+  price: number;
+  priceAfterDiscount?: number;
+  rating?: number;
+};
+
 type PopularItemsGridProps = {
   categoryId: string;
   searchParams: SearchParams;
