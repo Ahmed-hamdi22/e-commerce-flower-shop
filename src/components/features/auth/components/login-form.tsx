@@ -86,7 +86,7 @@ export default function LoginForm({
         {/* Forget Button */}
         <div className="flex">
           <Button
-            variant="link"
+            variant="secondary"
             className="text-custom-rose-900 p-0 underline ml-auto"
             onClick={() => onStateChange("forgot-password")}
           >
@@ -99,7 +99,7 @@ export default function LoginForm({
           <div className="text-gray-600">
             {t("dont-have-account")}{" "}
             <Button
-              variant="link"
+              variant="secondary"
               className="text-custom-rose-900 p-0  underline"
               onClick={() => onStateChange("register")}
             >

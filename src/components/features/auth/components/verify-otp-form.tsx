@@ -80,7 +80,7 @@ export default function VerifyOtpForm({ email, onStateChange }: VerifyOtpFormPro
         <div className="text-right text-sm">
           <span className="text-gray-600">{t("receive-code")} </span>
           <Button
-            variant="link"
+            variant="outline"
             className="text-custom-rose-900 hover:text-custom-rose-800 p-0 underline"
             onClick={() => resendOTP(email)}
             type="button"

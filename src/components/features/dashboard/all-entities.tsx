@@ -39,8 +39,10 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
   const handleSearch = useDebouncedCallback((query: string) => {
     setSearchQuery(query);
     if (query) {
-      const filtered = data.filter((product) =>
-        product.title.toLowerCase().includes(query.toLowerCase()),
+      const filtered = data.filter(
+        (product) =>
+          typeof product.title === "string" &&
+          product.title.toLowerCase().includes(query.toLowerCase()),
       );
       setFilteredData(filtered);
     } else {
@@ -112,7 +114,7 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
                       return (
                         <TableCell
                           key={`${product._id}-stock`}
-                          className={`${product.quantity < 5 ? "text-red-500" : "text-black"}`}
+                          className={`${(product.quantity ?? 0) < 5 ? "text-red-500" : "text-black"}`}
                         >
                           {product.quantity || t("n-a")}
                         </TableCell>
@@ -171,7 +173,9 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
                 <DeleteConfirmationDialog
                   isOpen={deleteDialogOpen}
                   onClose={() => setDeleteDialogOpen(false)}
-                  onConfirm={() => handleDelete(product._id)}
+                  onConfirm={() => {
+                    if (product._id) handleDelete(product._id);
+                  }}
                   itemName="product"
                 />
               </TableRow>
