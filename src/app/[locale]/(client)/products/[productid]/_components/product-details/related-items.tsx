@@ -8,11 +8,11 @@ import { FaArrowRightLong } from "react-icons/fa6";
 type TProps = {
   category: string;
   productid: string;
-  width?:string;
-  height?:string
+  width?: string;
+  height?: string;
 };
 
-export default async function RelatedItems({ category, productid,width,height }: TProps) {
+export default async function RelatedItems({ category, productid, width, height }: TProps) {
   // Translations
   const t = await getTranslations();
 
@@ -57,7 +57,7 @@ export default async function RelatedItems({ category, productid,width,height }:
             <div className="col-span-4 min-h-80 flex items-center justify-center text-center text-xl font-semibold text-blue-gray-900"></div>
           ) : (
             products.map((product: Product, index: number) => (
-              <ProductCard product={product} key={index} productid={productid} width={width} height={height} />
+              <ProductCard product={product} key={index} width={width} height={height} />
             ))
           )}
         </div>

@@ -16,7 +16,7 @@ import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
 
-export function OcassionsTable({ data }: { data: Occasion[] }) {
+export function OcassionsTable({ data }: { data: Occasions[] }) {
   // State for dialog control
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [currentItem, setCurrentItem] = useState<{ id: string; name: string } | null>(null);
@@ -61,7 +61,9 @@ export function OcassionsTable({ data }: { data: Occasion[] }) {
             return (
               <TableRow key={item._id} className="flex w-full hover:bg-custom-rose-100">
                 <TableCell className="flex-1">{item.name}</TableCell>
-                <TableCell className="flex-1">{item.productsCount} {t("products-0")}</TableCell>
+                <TableCell className="flex-1">
+                  {item.productsCount} {t("products-0")}
+                </TableCell>
                 <TableCell className="flex-1 flex justify-end">
                   <Button
                     size="sm"
