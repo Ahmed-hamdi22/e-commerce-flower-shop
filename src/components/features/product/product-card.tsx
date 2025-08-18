@@ -28,7 +28,7 @@ export default function ProductCard({ product, width, height }: ProductCardProps
   const { data: session } = useSession();
 
   // Mutation
-  const { mutate: addtoCart, isPending } = useAddToCart(product._id);
+  const { mutate: addtoCart, isPending } = useAddToCart(product._id || "fallback-id");
 
   return (
     <Card className="rounded-[20px] flex-col flex " key={product.id}>
