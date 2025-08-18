@@ -11,6 +11,17 @@ import { useAddToCart } from "@/hooks/products/use-add-to-cart";
 import { useSession } from "next-auth/react";
 import AuthDialog from "../auth/auth-dialog";
 
+type Product = {
+  id: string;
+  _id: string;
+  imgCover: string;
+  title: string;
+  price: number;
+  priceAfterDiscount?: number;
+  rating?: number;
+  // Add other properties as needed
+};
+
 type ProductCardProps = {
   product: Product;
   width?: string;
