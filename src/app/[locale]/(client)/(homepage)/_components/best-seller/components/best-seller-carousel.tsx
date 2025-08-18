@@ -8,16 +8,7 @@ import {
 import React from "react";
 import { getTranslations } from "next-intl/server";
 import ProductCard from "@/components/features/product/product-card";
-
-type ProductType = {
-  id: string;
-  _id: string;
-  imgCover: string;
-  title: string;
-  price: number;
-  priceAfterDiscount?: number;
-  rating?: number;
-};
+import { ProductType } from "@/lib/types/product";
 
 async function fetchProducts() {
   try {

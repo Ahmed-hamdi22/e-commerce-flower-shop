@@ -10,20 +10,10 @@ import { Link } from "@/i18n/routing";
 import { useAddToCart } from "@/hooks/products/use-add-to-cart";
 import { useSession } from "next-auth/react";
 import AuthDialog from "../auth/auth-dialog";
-
-type Product = {
-  id: string;
-  _id: string;
-  imgCover: string;
-  title: string;
-  price: number;
-  priceAfterDiscount?: number;
-  rating?: number;
-  // Add other properties as needed
-};
+import { ProductType } from "@/lib/types/product";
 
 type ProductCardProps = {
-  product: Product;
+  product: ProductType;
   width?: string;
   height?: string;
 };

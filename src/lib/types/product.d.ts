@@ -1,23 +1,24 @@
-declare type Product = {
-  _id?: string;
-  id?: string;
-  title: string;
-  description?: string;
-  slug?: string;
-  imgCover: string;
-  images?: string[];
-  price: number;
-  priceAfterDiscount?: number;
-  quantity: number;
-  category?: string;
-  occasion?: string;
-  discount?: number;
-  sold?: number;
-  rating?: number;
-  rateAvg?: number;
+import { Metadata } from "next/types";
+declare type DatabaseFields = {
   createdAt?: string;
   updatedAt?: string;
-  priceAfterDiscount?: number; // خليها موجودة هنا
+};
+
+declare type Product = {
+  title: string;
+  description: string;
+  imgCover: string;
+  images: string[];
+  price: number;
+  priceAfterDiscount: number;
+  quantity: number;
+  category: string;
+  occasion: string;
+  discount: number;
+  sold: number;
+  rating?: number;
+  rateAvg: number;
+  id: string;
 } & DatabaseFields;
 
 declare type ProductSuccess = {
