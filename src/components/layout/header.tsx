@@ -61,9 +61,7 @@ export default function Header() {
                 links={[
                   { href: "/profile", label: "profile" },
                   { href: "/order", label: "orders" },
-                  ...(session.user?.role === "admin"
-                    ? [{ href: "/dashboard", label: "dashboard" }]
-                    : []),
+                  { href: "/dashboard", label: "dashboard" },
                 ]}
                 showSignOut={true}
               />

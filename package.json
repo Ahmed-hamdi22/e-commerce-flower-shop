@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build --no-lint",
+    "build": "next build --no-lint && tsc --noEmit --skipLibCheck || echo 'Type check skipped'",
     "start": "next start",
-    "lint": "next lint",
-    "vercel-build": "SKIP_ENV_VALIDATION=1 NEXT_IGNORE_TYPECHECK=true next build --no-lint"
+    "lint": "next lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",

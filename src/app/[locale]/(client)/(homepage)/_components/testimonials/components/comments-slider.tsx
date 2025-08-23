@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import CommentIcon from "@/../public/assets/images/comments/comment-icon.png";
 import { Card, CardContent } from "@/components/ui/card";
 import { AvatarDemo } from "./comment-avatar";
 import { FaStar } from "react-icons/fa6";
@@ -16,7 +17,6 @@ import {
 import { useTranslations } from "next-intl";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import CarouselDots from "./carousel-dots";
-const CommentIcon = "/assets/images/comments/comment-icon.png";
 
 export default function CarouselSlider() {
   const t = useTranslations();
