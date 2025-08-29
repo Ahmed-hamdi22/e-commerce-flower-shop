@@ -121,7 +121,7 @@ export default function PagePagination({ metadata }: PagePaginationProps) {
                 className={`rounded-lg w-10 h-10 flex items-center justify-center ${
                   page === currentPage
                     ? "bg-custom-rose-900 text-white hover:bg-custom-rose-900 hover:text-white"
-                    : "bg-blue-gray-900 text-white hover:bg-blue-gray-900 hover:text-white"
+                    : "bg-blue-gray-100 text-white hover:bg-blue-gray-100 hover:text-white"
                 }`}
               >
                 {page}
