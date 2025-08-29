@@ -1,12 +1,12 @@
 export type ProductType = {
-  id?: string; // خليه optional عشان ساعات بييجي من API وساعات لأ
+  id?: string;
   _id?: string;
-  title: string;
+  title?: string;
   slug?: string;
   description?: string;
-  imgCover: string;
+  imgCover?: string;
   images?: string[];
-  price: number;
+  price?: number;
   priceAfterDiscount?: number;
   discount?: number;
   quantity?: number;

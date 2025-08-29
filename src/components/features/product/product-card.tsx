@@ -39,8 +39,8 @@ export default function ProductCard({ product, width, height }: ProductCardProps
 
         {/* Product image */}
         <Image
-          src={product.imgCover}
-          alt={product.title}
+          src={product.imgCover || "/placeholder.jpg"}
+          alt={product.title || "Product Image"}
           {...(isFixedSize
             ? { width: Number(width), height: Number(height) }
             : {
@@ -88,15 +88,13 @@ export default function ProductCard({ product, width, height }: ProductCardProps
 
             {/* Product price */}
             <p className="text-base text-flamingo font-medium text-start font-roboto">
-              {/* Formatting price */}
-              {format.number(product.priceAfterDiscount || product.price, {
+              {format.number(product.priceAfterDiscount ?? product.price ?? 0, {
                 style: "currency",
                 currency: "USD",
-              })}{" "}
-              {/* Display discounted price if available */}
+              })}
               {product.priceAfterDiscount && (
                 <span className="line-through text-blue-gray-50">
-                  {format.number(product.price, {
+                  {format.number(product.price ?? 0, {
                     style: "currency",
                     currency: "USD",
                   })}
