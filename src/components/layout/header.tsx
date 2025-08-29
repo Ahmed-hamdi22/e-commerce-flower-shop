@@ -22,13 +22,9 @@ export default function Header() {
     <header>
       <div className="container m-auto flex items-center justify-between ps-20">
         {/* Logo */}
-        <Image
-          src="/assets/images/logo.png"
-          alt="Flower App"
-          width={86}
-          height={0}
-          className="p-2"
-        />
+        <div className="relative w-[86px] h-[86px] p-2">
+          <Image src="/assets/images/logo.png" alt="Flower App" fill className="object-contain" />
+        </div>
 
         {/* Navigation links */}
         <div className="flex gap-6 text-base font-medium text-blue-gray-900">
