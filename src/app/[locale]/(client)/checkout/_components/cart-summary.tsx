@@ -19,8 +19,6 @@ export default function CartSummary({ cart }: CartType) {
 
   //  Calculating values
   const subtotal = cart.totalPrice;
-  const total = cart.totalPriceAfterDiscount;
-  const discount = subtotal - total;
 
   return (
     <div className="w-[304px] h-80 py-2 px-4 bg-main-color rounded-2xl shadow-sm">
@@ -51,11 +49,7 @@ export default function CartSummary({ cart }: CartType) {
                 <div className="flex justify-between">
                   <span className="text-blue-gray-900 font-bold">{t("discount")}</span>
                   <span className="text-red-600">
-                    -
-                    {formatter.number(discount, {
-                      style: "currency",
-                      currency: "USD",
-                    })}
+                    {cart.discount ? `-%${cart.discount}` : t("no-discount")}{" "}
                   </span>
                 </div>
 
@@ -69,7 +63,7 @@ export default function CartSummary({ cart }: CartType) {
                 <div className="flex justify-between pt-2 border-t border-gray-200">
                   <span className="text-blue-gray-900 font-bold">{t("total")}</span>
                   <span className="text-custom-rose-900 font-bold">
-                    {formatter.number(total, {
+                    {formatter.number(subtotal, {
                       style: "currency",
                       currency: "USD",
                     })}

@@ -40,7 +40,7 @@ export default function CartSummary({ cart }: { cart: Cart }) {
         {/* Total */}
         <div className="flex justify-between -mt-5">
           <p className="font-bold text-custom-blue-900 ">{t("total")}</p>
-          <p className="font-bold text-custom-rose-900 ">${cart?.totalPriceAfterDiscount}</p>
+          <p className="font-bold text-custom-rose-900 ">${cart?.totalPrice}</p>
         </div>
         {/* Checkout Button */}
         <div className=" flex justify-end">
