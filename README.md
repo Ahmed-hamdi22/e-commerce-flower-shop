@@ -26,7 +26,7 @@ Follow these steps to get the project running locally:
 1. **Clone the repository** to your local machine:
 
    ```bash
-   git clone https://github.com/hassanesssam/e-commerce-flower-shop.git
+   https://github.com/Ahmed-hamdi22/e-commerce-flower-shop.git
    ```
 
 2. **Navigate into the project directory**:
