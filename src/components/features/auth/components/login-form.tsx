@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import useLogin from "@/hooks/auth/use-login";
+import { Link } from "@/i18n/routing";
 
 export default function LoginForm({
   onStateChange,
@@ -85,26 +86,26 @@ export default function LoginForm({
 
         {/* Forget Button */}
         <div className="flex">
-          <Button
-            variant="secondary"
-            className="text-custom-rose-900 p-0 underline ml-auto"
+          <Link
+            href="#"
+            className="bg-transparent border-none text-custom-rose-900 p-0 underline ml-auto"
             onClick={() => onStateChange("forgot-password")}
           >
             {t("forgot-password")}
-          </Button>
+          </Link>
         </div>
 
         {/* Register link */}
         <div className="flex flex-col gap-2 text-sm text-center mb-5">
           <div className="text-gray-600">
             {t("dont-have-account")}{" "}
-            <Button
-              variant="secondary"
-              className="text-custom-rose-900 p-0  underline"
+            <Link
+              href="#"
+              className="bg-transparent text-custom-rose-900 p-0 underline  border-none "
               onClick={() => onStateChange("register")}
             >
               {t("create-account")}
-            </Button>
+            </Link>
           </div>
         </div>
         <div className="flex flex-col gap-8">
