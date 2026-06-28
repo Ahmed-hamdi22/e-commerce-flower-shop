@@ -5,10 +5,12 @@ import { toast } from "sonner";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { checkoutWithStripe, createCashOrder } from "@/lib/apis/payment.api";
+import { useLocale } from "next-intl";
 
 export function usePayment() {
   // Translations
   const t = useTranslations();
+  const locale = useLocale();
 
   // Navgation
   const router = useRouter();
@@ -47,7 +49,9 @@ export function usePayment() {
   });
 
   return {
-    checkoutWithStripe: stripeMutation.mutate,
-    createCashOrder: cashMutation.mutate,
+    checkoutWithStripe: (shippingAddress: ShippingAddress) =>
+      stripeMutation.mutate({ shippingAddress, locale }),
+    createCashOrder: (shippingAddress: ShippingAddress) =>
+      cashMutation.mutate({ shippingAddress, locale }),
   };
 }
