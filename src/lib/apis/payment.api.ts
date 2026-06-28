@@ -1,50 +1,56 @@
 "use server";
-import { cookies } from "next/headers";
-import { decode } from "next-auth/jwt";
-import { AUTH_COOKIE } from "@/lib/constants/auth.constant";
+import getToken from "@/lib/utils/get-token";
+
+type PaymentActionResult<T = unknown> =
+  | { success: true; data: T }
+  | { success: false; message: string };
+
+function paymentError<T = unknown>(message = "Please login first"): PaymentActionResult<T> {
+  return { success: false, message };
+}
+
 async function getAuthenticatedToken() {
-  const tokenCookie = cookies().get(AUTH_COOKIE)?.value;
-  if (!tokenCookie) {
-    throw new Error("Authentication required");
-  }
-  const token = await decode({
-    token: tokenCookie,
-    secret: process.env.NEXTAUTH_SECRET!,
-  });
-  if (!token?.token) {
-    throw new Error("Invalid authentication token");
-  }
-  return token.token;
+  return getToken();
 }
 // checkoutWithStripe
 
-export async function checkoutWithStripe(shippingAddress: ShippingAddress) {
+export async function checkoutWithStripe(
+  shippingAddress: ShippingAddress,
+): Promise<PaymentActionResult<{ url: string }>> {
   const token = await getAuthenticatedToken();
-  const res = await fetch(`${process.env.API}/orders/checkout`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    cache: "no-store",
-    body: JSON.stringify({
-      shippingAddress,
-    }),
-  });
 
-  if (!res.ok) {
-    const errorData = await res.json();
-    throw new Error(errorData?.error || "Failed to create order");
+  if (!token || !process.env.API) {
+    return paymentError();
   }
 
-  const data = await res.json();
+  try {
+    const res = await fetch(`${process.env.API}/orders/checkout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      cache: "no-store",
+      body: JSON.stringify({
+        shippingAddress,
+      }),
+    });
 
-  // session.url
-  if (!data?.session?.url) {
-    throw new Error("Payment gateway URL not provided by server");
+    const data = await res.json();
+
+    if (!res.ok) {
+      return paymentError(getErrorMessage(data, "Failed to create order"));
+    }
+
+    // session.url
+    if (!data?.session?.url) {
+      return paymentError("Payment gateway URL not provided by server");
+    }
+
+    return { success: true, data: { url: data.session.url } };
+  } catch {
+    return paymentError("Failed to create order");
   }
-
-  return data.session.url;
 }
 
 // CashOrder
@@ -91,33 +97,44 @@ function hasCreatedOrder(payload: unknown) {
   return Boolean(order._id || order.id || order.orderNumber);
 }
 
-export async function createCashOrder(shippingAddress: ShippingAddress) {
+export async function createCashOrder(
+  shippingAddress: ShippingAddress,
+): Promise<PaymentActionResult<unknown>> {
   const token = await getAuthenticatedToken();
-  const res = await fetch(process.env.API + "/orders", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    cache: "no-store",
-    body: JSON.stringify({
-      shippingAddress,
-    }),
-  });
 
-  const payload = await res.json();
-
-  if (!res.ok) {
-    throw new Error(getErrorMessage(payload, "Failed to create order"));
+  if (!token || !process.env.API) {
+    return paymentError();
   }
 
-  if (payload && typeof payload === "object" && "error" in payload) {
-    throw new Error(getErrorMessage(payload, "Failed to create order"));
-  }
+  try {
+    const res = await fetch(process.env.API + "/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      cache: "no-store",
+      body: JSON.stringify({
+        shippingAddress,
+      }),
+    });
 
-  if (!hasCreatedOrder(payload)) {
-    throw new Error("Order was not created. Please try again.");
-  }
+    const payload = await res.json();
 
-  return payload;
+    if (!res.ok) {
+      return paymentError(getErrorMessage(payload, "Failed to create order"));
+    }
+
+    if (payload && typeof payload === "object" && "error" in payload) {
+      return paymentError(getErrorMessage(payload, "Failed to create order"));
+    }
+
+    if (!hasCreatedOrder(payload)) {
+      return paymentError("Order was not created. Please try again.");
+    }
+
+    return { success: true, data: payload };
+  } catch {
+    return paymentError("Failed to create order");
+  }
 }

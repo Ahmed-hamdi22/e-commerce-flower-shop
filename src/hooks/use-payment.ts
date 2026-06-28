@@ -16,8 +16,13 @@ export function usePayment() {
   // Stripe mutation
   const stripeMutation = useMutation({
     mutationFn: checkoutWithStripe,
-    onSuccess: (url: string) => {
-      router.push(url);
+    onSuccess: (result) => {
+      if (!result.success) {
+        toast.error(result.message || t("payment-failed"));
+        return;
+      }
+
+      router.push(result.data.url);
     },
     onError: (error) => {
       toast.error(error.message || t("payment-failed"));
@@ -27,7 +32,12 @@ export function usePayment() {
   // Cash mutation
   const cashMutation = useMutation({
     mutationFn: createCashOrder,
-    onSuccess: () => {
+    onSuccess: (result) => {
+      if (!result.success) {
+        toast.error(result.message || t("payment-failed"));
+        return;
+      }
+
       toast.success(t("order-placed-successfully"));
       router.replace("/allOrders");
     },
