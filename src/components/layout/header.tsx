@@ -8,8 +8,9 @@ import { useSession } from "next-auth/react";
 import AuthDialog from "../features/auth/auth-dialog";
 import ProfileIcon from "../common/profile-icon";
 import { Button } from "../ui/button";
-import { PackageCheck, ShoppingCart } from "lucide-react";
+import { Menu, PackageCheck, ShoppingCart, X } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 function getCartQuantity(cart?: Cart) {
   if (!cart?.cartItems?.length) return 0;
@@ -18,6 +19,8 @@ function getCartQuantity(cart?: Cart) {
 }
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   // Translation
   const t = useTranslations();
 
@@ -38,10 +41,10 @@ export default function Header() {
   const cartQuantity = getCartQuantity(cartPayload?.cart);
 
   return (
-    <header>
-      <div className="container m-auto flex items-center justify-between ps-20">
+    <header className="relative z-40 bg-white">
+      <div className="container m-auto flex min-h-[72px] items-center justify-between px-4 sm:px-6 lg:min-h-[86px] lg:ps-20 lg:pe-0">
         {/* Logo */}
-        <Link href="/" className="relative block w-[86px] h-[86px] p-2">
+        <Link href="/" className="relative block h-16 w-16 shrink-0 p-2 lg:h-[86px] lg:w-[86px]">
           <Image
             src="/assets/images/logo.png"
             alt="Flower App"
@@ -52,7 +55,7 @@ export default function Header() {
         </Link>
 
         {/* Navigation links */}
-        <div className="flex gap-6 text-base font-medium text-blue-gray-900">
+        <div className="hidden gap-6 text-base font-medium text-blue-gray-900 lg:flex">
           <Link href="/" className="transition-colors text-custom-rose-900">
             {t("home")}
           </Link>
@@ -67,7 +70,7 @@ export default function Header() {
           </Link>
         </div>
 
-        <div className="flex gap-5">
+        <div className="flex items-center gap-3 lg:gap-5">
           {/* Icons if session is exist */}
           {session && (
             <>
@@ -102,7 +105,7 @@ export default function Header() {
                 <AuthDialog>
                   <Button
                     variant="outline"
-                    className="text-custom-rose-900 hover:bg-custom-rose-900 hover:text-white"
+                    className="hidden text-custom-rose-900 hover:bg-custom-rose-900 hover:text-white sm:inline-flex"
                   >
                     {t("login")}
                   </Button>
@@ -110,7 +113,85 @@ export default function Header() {
               </>
             )}
           </div>
+
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((value) => !value)}
+            className="h-10 w-10 rounded-xl border-custom-rose-200 text-custom-rose-900 lg:hidden"
+          >
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
         </div>
+      </div>
+
+      <div
+        className={`border-t border-custom-rose-100 bg-white px-4 py-4 shadow-sm lg:hidden ${
+          isMenuOpen ? "block" : "hidden"
+        }`}
+      >
+        <nav className="container flex flex-col gap-1 text-base font-medium text-blue-gray-900">
+          <Link
+            href="/"
+            onClick={() => setIsMenuOpen(false)}
+            className="rounded-xl px-3 py-3 text-custom-rose-900 transition-colors hover:bg-custom-rose-50"
+          >
+            {t("home")}
+          </Link>
+          <Link
+            href="/products"
+            onClick={() => setIsMenuOpen(false)}
+            className="rounded-xl px-3 py-3 transition-colors hover:bg-custom-rose-50 hover:text-custom-rose-900"
+          >
+            {t("all-products")}
+          </Link>
+          <Link
+            href="/about"
+            onClick={() => setIsMenuOpen(false)}
+            className="rounded-xl px-3 py-3 transition-colors hover:bg-custom-rose-50 hover:text-custom-rose-900"
+          >
+            {t("about-us")}
+          </Link>
+          <Link
+            href="/contact"
+            onClick={() => setIsMenuOpen(false)}
+            className="rounded-xl px-3 py-3 transition-colors hover:bg-custom-rose-50 hover:text-custom-rose-900"
+          >
+            {t("contact")}
+          </Link>
+
+          {session ? (
+            <>
+              <Link
+                href="/profile"
+                onClick={() => setIsMenuOpen(false)}
+                className="rounded-xl px-3 py-3 transition-colors hover:bg-custom-rose-50 hover:text-custom-rose-900"
+              >
+                {t("profile")}
+              </Link>
+              <Link
+                href="/orders"
+                onClick={() => setIsMenuOpen(false)}
+                className="rounded-xl px-3 py-3 transition-colors hover:bg-custom-rose-50 hover:text-custom-rose-900"
+              >
+                {t("orders")}
+              </Link>
+            </>
+          ) : (
+            <AuthDialog>
+              <Button
+                variant="outline"
+                className="mt-2 w-full justify-center rounded-xl text-custom-rose-900 hover:bg-custom-rose-900 hover:text-white"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {t("login")}
+              </Button>
+            </AuthDialog>
+          )}
+        </nav>
       </div>
     </header>
   );
