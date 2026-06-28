@@ -61,7 +61,7 @@ export default function ContactForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-6 pl-5 pt-9 w-[750px] my-16 h-[440px] rounded-[10px] shadow-[0px_1px_30px_0px_rgba(248,43,169,0.1)] ml-5 bg-[#FFFFFF]"
+        className="space-y-6 pl-5 pt-9 w-[750px] my-16 h-[440px] rounded-[10px] shadow-[0px_1px_30px_0px_rgba(122,30,34,0.1)] ml-5 bg-[#FFFFFF]"
       >
         {/* Name field */}
         <FormField

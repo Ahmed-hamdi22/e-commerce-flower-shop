@@ -10,11 +10,23 @@ import { getTranslations } from "next-intl/server";
 import ProductCard from "@/components/features/product/product-card";
 import { ProductType } from "@/lib/types/product";
 
-async function fetchProducts() {
+function getProductsFromPayload(payload: unknown): ProductType[] {
+  if (!payload || typeof payload !== "object") return [];
+
+  const responsePayload = payload as {
+    products?: ProductType[];
+    data?: { products?: ProductType[] };
+  };
+
+  if (Array.isArray(responsePayload.products)) return responsePayload.products;
+  if (Array.isArray(responsePayload.data?.products)) return responsePayload.data.products;
+
+  return [];
+}
+
+async function fetchProducts(url: string) {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API}/filtered-products?category=673c46fd1159920171827c85&sort=-sold`,
-    );
+    const response = await fetch(url);
     const payload: APIResponse<PaginatedResponse<{ products: ProductType[] }>> =
       await response.json();
 
@@ -24,9 +36,21 @@ async function fetchProducts() {
 
     return payload;
   } catch (error) {
-    console.error("Error fetching categories: ", error);
+    console.error("Error fetching products: ", error);
     return null;
   }
+}
+
+async function fetchBestSellerProducts() {
+  const bestSellerPayload = await fetchProducts(
+    `${process.env.NEXT_PUBLIC_API}/filtered-products?sort=-sold&limit=6`,
+  );
+  const bestSellerProducts = getProductsFromPayload(bestSellerPayload);
+
+  if (bestSellerProducts.length > 0) return bestSellerProducts;
+
+  const fallbackPayload = await fetchProducts(`${process.env.API}/products?limit=6`);
+  return getProductsFromPayload(fallbackPayload);
 }
 
 export default async function BestSellerCarousel() {
@@ -34,12 +58,12 @@ export default async function BestSellerCarousel() {
   const t = await getTranslations();
 
   // Variables
-  const payload = await fetchProducts();
+  const products = await fetchBestSellerProducts();
 
   return (
     <div className="overflow-hidden flex justify-center items-center col-span-3">
       {/* Show a "Coming Soon" message if no products are available */}
-      {payload?.products.length === 0 ? (
+      {products.length === 0 ? (
         <div className="col-span-4 min-h-80 text-center text-xl font-semibold text-blue-gray-900">
           {t("coming-soon")}
         </div>
@@ -55,7 +79,7 @@ export default async function BestSellerCarousel() {
         >
           {/* Carousel content */}
           <CarouselContent>
-            {payload?.products.map((product: ProductType, index: number) => (
+            {products.map((product: ProductType, index: number) => (
               <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/3">
                 <ProductCard product={product} key={index} />
               </CarouselItem>

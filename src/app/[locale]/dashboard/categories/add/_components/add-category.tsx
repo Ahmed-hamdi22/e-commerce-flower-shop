@@ -125,7 +125,7 @@ export default function AddCategory() {
                           <FileUp className="w-4 h-4 text-custom-gray" />
 
                           {/* Upload image */}
-                          <span className="text-pink-500  font-normal text-sm">
+                          <span className="text-custom-rose-900  font-normal text-sm">
                             {t("upload-image")}
                           </span>
                         </span>

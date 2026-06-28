@@ -25,7 +25,7 @@ export function useUpdateProduct() {
       toast.success(t("product-updated"));
       router.push("/dashboard/products");
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
       toast.error(error.message || t("product-update-failed"));
     },
   });

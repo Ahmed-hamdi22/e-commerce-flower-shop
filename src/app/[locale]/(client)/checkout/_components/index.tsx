@@ -46,7 +46,7 @@ export default function CheckoutContent({ cart }: { cart: Cart }) {
           onValueChange={setOpen}
         >
           {/* Address form  */}
-          <AddressForm onSubmitAddress={handleAddressSubmit} setOpen={setOpen} open={open} />
+          <AddressForm onSubmitAddress={handleAddressSubmit} setOpen={setOpen} />
 
           {/* Payment form */}
           <PaymentForm shippingAddress={shippingAddress} />

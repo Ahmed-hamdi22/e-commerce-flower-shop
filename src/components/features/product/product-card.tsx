@@ -39,7 +39,7 @@ export default function ProductCard({ product, width, height }: ProductCardProps
 
         {/* Product image */}
         <Image
-          src={product.imgCover || "/placeholder.jpg"}
+          src={product.imgCover || "/assets/images/coming-soon.png"}
           alt={product.title || "Product Image"}
           {...(isFixedSize
             ? { width: Number(width), height: Number(height) }

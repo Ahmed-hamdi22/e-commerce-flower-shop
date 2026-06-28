@@ -20,7 +20,7 @@ export default function GallerySection() {
                   src={`/assets/images/gallery/gallery-${i + 1}.jpg`}
                   alt={`Gallery's Photo ${i + 1}`}
                   fill
-                  sizes="100%"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover"
                 />
               </div>

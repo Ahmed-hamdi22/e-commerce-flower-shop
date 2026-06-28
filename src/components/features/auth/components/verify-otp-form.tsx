@@ -2,7 +2,6 @@
 
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useVerifyOtp } from "@/hooks/auth/use-verify-otp";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -10,6 +9,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { useForgotPassword } from "@/hooks/auth/use-forgot-password";
 import FeedbackMessage from "@/components/common/feedback-message";
+import { KeyRound } from "lucide-react";
+import AuthInput from "./auth-input";
 
 type VerifyOtpFormProps = {
   email: string;
@@ -49,7 +50,7 @@ export default function VerifyOtpForm({ email, onStateChange }: VerifyOtpFormPro
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 min-w-96">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
         {/* OTP Input Field */}
         <FormField
           control={form.control}
@@ -57,13 +58,14 @@ export default function VerifyOtpForm({ email, onStateChange }: VerifyOtpFormPro
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input
+                <AuthInput
+                  icon={KeyRound}
                   {...field}
                   type="text"
                   inputMode="numeric"
                   maxLength={6}
                   placeholder={t("enter-code")}
-                  className="w-full h-12 text-left rtl:text-right text-xl  shadow-[0px_1px_10px_0px_rgba(0,0,0,0.1)]"
+                  className="text-xl tracking-[0.3em]"
                 />
               </FormControl>
 
@@ -81,7 +83,7 @@ export default function VerifyOtpForm({ email, onStateChange }: VerifyOtpFormPro
           <span className="text-gray-600">{t("receive-code")} </span>
           <Button
             variant="outline"
-            className="text-custom-rose-900 hover:text-custom-rose-800 p-0 underline"
+            className="h-auto border-none bg-transparent p-0 text-custom-rose-900 underline shadow-none hover:bg-transparent hover:text-custom-rose-800"
             onClick={() => resendOTP(email)}
             type="button"
             disabled={isResending}
@@ -92,7 +94,7 @@ export default function VerifyOtpForm({ email, onStateChange }: VerifyOtpFormPro
 
         {/* Submit button */}
         <Button
-          className="w-full bg-custom-rose-900 rounded-2xl hover:bg-custom-rose-800"
+          className="h-12 w-full rounded-xl bg-custom-rose-900 hover:bg-custom-rose-800"
           type="submit"
           disabled={isPending}
         >

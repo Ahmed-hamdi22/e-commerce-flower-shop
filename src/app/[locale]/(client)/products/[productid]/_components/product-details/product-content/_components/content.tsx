@@ -59,7 +59,7 @@ export default async function Content({ product }: Productprops) {
 
         {/* Product description */}
         {product.description && (
-          <p className="text-[#757F95] text-[16px] font-normal leading-[28.8px] mt-5">
+          <p className="text-[#757575] text-[16px] font-normal leading-[28.8px] mt-5">
             {product.description}
           </p>
         )}

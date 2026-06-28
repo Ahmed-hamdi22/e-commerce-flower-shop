@@ -92,8 +92,8 @@ body {
 .spinner:before,
 .spinner:after {
   background:
-    radial-gradient(closest-side at 50% 12.5%, #f03355 96%, #0000) 50% 0/20% 80% repeat-y,
-    radial-gradient(closest-side at 12.5% 50%, #f03355 96%, #0000) 0 50%/80% 20% repeat-x;
+    radial-gradient(closest-side at 50% 12.5%, #7a1e22 96%, #0000) 50% 0/20% 80% repeat-y,
+    radial-gradient(closest-side at 12.5% 50%, #7a1e22 96%, #0000) 0 50%/80% 20% repeat-x;
 }
 .spinner:before,
 .spinner:after {
@@ -115,13 +115,13 @@ body {
 /*****************************************************************/
 
 .comments-section {
-  background-image: url("/assets/images/testimonials\ background.png");
+  background-image: url("/assets/images/testimonials-background.png");
 }
 
 .avatar-frame {
   background: conic-gradient(
     transparent 0deg 140deg,
-    #f82ba9 140.2deg 300deg,
+    #7a1e22 140.2deg 300deg,
     transparent 300.2deg 360deg
   );
 }

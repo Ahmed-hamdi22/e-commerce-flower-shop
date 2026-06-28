@@ -10,7 +10,7 @@ export default function ContactIcons() {
   const t = useTranslations();
 
   return (
-    <div className="w-[348px] h-[440px] shadow-[0px_1px_30px_0px_rgba(248,43,169,0.1)] rounded-[20px] pl-6 pt-10 flex flex-col gap-16 ">
+    <div className="w-[348px] h-[440px] shadow-[0px_1px_30px_0px_rgba(122,30,34,0.1)] rounded-[20px] pl-6 pt-10 flex flex-col gap-16 ">
       {/* Call */}
       <div className="flex gap-4">
         {/* Icon */}

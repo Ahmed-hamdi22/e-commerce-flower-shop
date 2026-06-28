@@ -25,7 +25,7 @@ export function UseUpdateCategory() {
       toast.success(t("category-updated"));
       router.push("/dashboard/categories");
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
       toast.error(error.message || t("category-update-failed"));
     },
   });

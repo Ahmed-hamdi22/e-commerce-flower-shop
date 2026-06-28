@@ -416,7 +416,7 @@ export default function AddProductForm({ product, categories, occasions }: TypeP
                             <FileUp className="w-4 h-4 text-custom-gray" />
 
                             {/* Upload image */}
-                            <span className="text-pink-500  font-normal text-sm">Upload file</span>
+                            <span className="text-custom-rose-900  font-normal text-sm">Upload file</span>
                           </span>
                         </FormLabel>
                         {/* Input */}
@@ -465,7 +465,7 @@ export default function AddProductForm({ product, categories, occasions }: TypeP
                             <FileUp className="w-4 h-4 text-custom-gray" />
 
                             {/* Upload image */}
-                            <span className="text-pink-500  font-normal text-sm">Upload file</span>
+                            <span className="text-custom-rose-900  font-normal text-sm">Upload file</span>
                           </span>
                         </FormLabel>
                         {/* Input */}

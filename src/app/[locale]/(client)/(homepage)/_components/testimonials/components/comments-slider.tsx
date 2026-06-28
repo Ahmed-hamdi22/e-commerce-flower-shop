@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import CommentIcon from "@/../public/assets/images/comments/comment-icon.png";
 import { Card, CardContent } from "@/components/ui/card";
 import { AvatarDemo } from "./comment-avatar";
 import { FaStar } from "react-icons/fa6";
@@ -17,7 +16,7 @@ import {
 import { useTranslations } from "next-intl";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import CarouselDots from "./carousel-dots";
-
+const COMMENT_ICON_SRC = "/assets/images/comments/comment-icon.png";
 export default function CarouselSlider() {
   const t = useTranslations();
 
@@ -71,7 +70,7 @@ export default function CarouselSlider() {
                         {/* Avatar Rose Frame */}
                         <div className="avatar-frame absolute inset-[-1px] rounded-full bg-transparent"></div>
                         {/* Avatar */}
-                        <span className="relative w-[50px] h-[50px] bg-white rounded-full flex justify-center items-center overflow-hiddn">
+                        <span className="relative w-[50px] h-[50px] bg-white rounded-full flex justify-center items-center overflow-hidden">
                           <AvatarDemo
                             ImageSrc={`/assets/images/comments/comment-avatar-${i + 1}.jpg`}
                           />
@@ -89,7 +88,7 @@ export default function CarouselSlider() {
                     </div>
 
                     {/* Line as a decoration */}
-                    <div className="bg-[#757F95] border-[0.5px]"></div>
+                    <div className="bg-[#757575] border-[0.5px]"></div>
 
                     {/* The Comment */}
                     <div className="py-6">
@@ -112,7 +111,12 @@ export default function CarouselSlider() {
                       </ul>
                       {/* The Comment Icon */}
                       <div>
-                        <Image src={CommentIcon || "/placeholder.svg"} alt="Comment Icon" />
+                        <Image
+                          src={COMMENT_ICON_SRC}
+                          alt="Comment Icon"
+                          width={36}
+                          height={36}
+                        />{" "}
                       </div>
                     </div>
                   </CardContent>

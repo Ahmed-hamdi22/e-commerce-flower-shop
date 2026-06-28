@@ -1,26 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { RiVisaLine } from "react-icons/ri";
 import ArrowLeft from "@/components/common/arrow-long-left";
 import ArrowRight from "@/components/common/arrow-right";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { cn } from "@/lib/utils";
-import { z } from "zod";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { usePayment } from "@/hooks/use-payment";
@@ -39,24 +27,6 @@ export function PaymentForm({ shippingAddress }: PaymentFormProps) {
 
   // State
   const [paymentType, setPaymentType] = useState<"cash" | "card">("cash");
-
-  // Form & Validation
-  const paymentSchema = z.object({
-    name: z.string().min(1, t("name-schema")),
-    number: z.string().regex(/^\d{16}$/, t("nunmer-schema")),
-    expiry: z.string().regex(/^(0[1-9]|1[0-2])\/\d{2}$/, t("expiry-schema")),
-    ccv: z.string().regex(/^\d{3,4}$/, t("ccv-schema")),
-  });
-
-  const form = useForm<z.infer<typeof paymentSchema>>({
-    resolver: zodResolver(paymentSchema),
-    defaultValues: {
-      name: "",
-      number: "",
-      expiry: "",
-      ccv: "",
-    },
-  });
 
   // HandelSubmit
   const { checkoutWithStripe, createCashOrder } = usePayment();
@@ -86,7 +56,7 @@ export function PaymentForm({ shippingAddress }: PaymentFormProps) {
               className={cn(
                 "flex flex-col items-center justify-center gap-1 border-2 rounded-[20px] p-4 w-[129px] h-[125px]",
                 paymentType === "cash"
-                  ? "border-custom-rose-500 text-custom-rose-900 bg-rose-50"
+                  ? "border-custom-rose-500 text-custom-rose-900 bg-custom-rose-50"
                   : "border-gray-300 text-gray-500 hover:border-gray-400",
               )}
             >
@@ -100,7 +70,7 @@ export function PaymentForm({ shippingAddress }: PaymentFormProps) {
               className={cn(
                 "flex flex-col items-center justify-center gap-1 border-2 rounded-[20px] p-4 w-[129px] h-[125px]",
                 paymentType === "card"
-                  ? "border-custom-rose-500 text-custom-rose-900 bg-rose-50"
+                  ? "border-custom-rose-500 text-custom-rose-900 bg-custom-rose-50"
                   : "border-gray-300 text-gray-500 hover:border-gray-400",
               )}
             >

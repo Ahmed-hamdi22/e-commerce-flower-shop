@@ -4,9 +4,8 @@ import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Inter, Roboto } from "next/font/google";
 import { cn } from "@/lib/utils/cn";
-import { Toaster } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
 import NextAuthProvider from "@/components/provider/components/next-auth-provider";
-import AuthDialog from "@/components/features/auth/auth-dialog";
 import { Check, Info, X } from "lucide-react";
 
 const inter = Inter({
@@ -40,10 +39,10 @@ export default function LocaleLayout({ params: { locale }, children }: LayoutPro
             <Toaster
               position="top-center"
               icons={{
-              info: <Info size={16} className="text-foreground" />,
-              success: <Check size={16} className="text-success" />,
-              error: <X size={16} className="text-error" />,
-            }}
+                info: <Info size={16} className="text-inherit" />,
+                success: <Check size={16} className="text-inherit" />,
+                error: <X size={16} className="text-inherit" />,
+              }}
             />
           </NextAuthProvider>
         </Providers>

@@ -1,13 +1,14 @@
 "use client";
 
 import { addToCartAction } from "@/lib/actions/cart.action";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 export default function useAddToCart() {
   //Translations
   const t = useTranslations();
+  const queryClient = useQueryClient();
 
   // Mutation
   const { isPending, error, mutate } = useMutation({
@@ -22,6 +23,7 @@ export default function useAddToCart() {
     // Success message toast
     onSuccess: () => {
       // Show toast success message
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
       toast.success(t("product-added-to-cart-successfully"));
     },
 

@@ -10,7 +10,7 @@ import Image from "next/image";
 // Type
 
 type OrderDetailsProps = {
-  order: Order;
+  order: Order | null;
 };
 
 export default function OrderDetails({ order }: OrderDetailsProps) {
@@ -23,15 +23,27 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
   // Navigation
   const router = useRouter();
 
+  const orderItems = Array.isArray(order?.orderItems) ? order.orderItems : [];
+
   // Calculate subtotal
-  const subtotal = order.orderItems.reduce(
+  const subtotal = orderItems.reduce(
     (sum, item) => sum + Number(item.price) * Number(item.quantity),
     0,
   );
 
-  const discount = subtotal - Number(order.totalPrice);
+  const discount = subtotal - Number(order?.totalPrice || 0);
 
   const total = subtotal;
+
+  if (!order) {
+    return (
+      <div className="max-w-3xl mx-auto py-10 px-4">
+        <div className="rounded-2xl border border-custom-rose-900 bg-main-color p-6 text-center text-blue-gray-900">
+          {t("you-do-not-have-an-order")}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-3xl mx-auto py-2 px-4">
@@ -60,7 +72,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
             <div className="mb-6">
               <h5 className="font-bold mb-3 text-blue-gray-900">{t("order-items")}</h5>
               <div className="space-y-4">
-                {order.orderItems.map((item) => {
+                {orderItems.map((item) => {
                   const itemTotal = Number(item.price) * Number(item.quantity);
 
                   return (
@@ -68,7 +80,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
                       {/* Image */}
                       <div className="relative w-16 h-16 rounded-md overflow-hidden border border-gray-200">
                         <Image
-                          src={item.product.imgCover || "Product Image"}
+                          src={item.product.imgCover || "/assets/images/coming-soon.png"}
                           alt={item.product.title || "Product Image"}
                           fill
                           className="object-cover"

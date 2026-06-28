@@ -27,7 +27,7 @@ export default function Header({ paths = [] }: HeaderProps) {
 
   return (
     // Header container
-    <div className="h-16 border-b border-black/8 flex items-center px-4">
+    <div className="h-16 border-b border-custom-rose-100 bg-white flex items-center px-4">
       {/* Breadcrumb */}
       <Breadcrumb>
         {/* Breadcrumb list */}

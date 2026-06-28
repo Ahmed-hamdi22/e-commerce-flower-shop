@@ -1,6 +1,7 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { addProductToCart } from "@/lib/actions/product.action";
@@ -8,6 +9,7 @@ import { addProductToCart } from "@/lib/actions/product.action";
 export const useAddToCart = (productid: string) => {
   // Translations
   const t = useTranslations();
+  const queryClient = useQueryClient();
 
   // Mutation
   const mutation = useMutation({
@@ -21,6 +23,7 @@ export const useAddToCart = (productid: string) => {
       if (!data.success) {
         toast.error(data.message);
       } else {
+        queryClient.invalidateQueries({ queryKey: ["cart"] });
         toast.success(data.message);
       }
     },

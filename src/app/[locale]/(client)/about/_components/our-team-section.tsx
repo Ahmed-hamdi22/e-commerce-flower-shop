@@ -81,7 +81,6 @@ export default async function OurTeamSection() {
                     fill
                     sizes="(max-width: 768px) 100vw, 254px"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    priority={item.id < 4}
                   />
                 </div>
               </CardHeader>

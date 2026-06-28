@@ -25,9 +25,8 @@ import { Locale } from "@/i18n/routing";
 type AddressFormProps = {
   onSubmitAddress: (address: ShippingAddress) => void;
   setOpen: (value: string) => void;
-  open: string;
 };
-export default function AddressForm({ onSubmitAddress, setOpen, open }: AddressFormProps) {
+export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormProps) {
   // Translation
   const t = useTranslations();
   const locale = useLocale() as Locale;
@@ -45,8 +44,8 @@ export default function AddressForm({ onSubmitAddress, setOpen, open }: AddressF
         t("invalid-phone-number-format-must-start-with-a-country-code"),
       ),
     city: z.string().optional(),
-    lat: z.string().optional(),
-    long: z.string().optional(),
+    lat: z.string().trim().optional(),
+    long: z.string().trim().optional(),
   });
 
   type Inputs = z.infer<typeof Schema>;
@@ -76,7 +75,17 @@ export default function AddressForm({ onSubmitAddress, setOpen, open }: AddressF
 
   //  Handle submission address form
   const onSubmit = (values: Inputs) => {
-    onSubmitAddress?.(values);
+    const address: ShippingAddress = {
+      ...values,
+    };
+
+    if (!values.lat?.trim()) delete address.lat;
+    else address.lat = values.lat.trim();
+
+    if (!values.long?.trim()) delete address.long;
+    else address.long = values.long.trim();
+
+    onSubmitAddress?.(address);
     setOpen("paymentform");
   };
 
@@ -100,7 +109,7 @@ export default function AddressForm({ onSubmitAddress, setOpen, open }: AddressF
                 render={({ field }) => (
                   <FormItem className="">
                     {/* Label */}
-                    <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
+                    <FormLabel className="text-base font-medium text-[#2E2E30] font-roboto">
                       {t("street")}
                     </FormLabel>
 
@@ -127,7 +136,7 @@ export default function AddressForm({ onSubmitAddress, setOpen, open }: AddressF
                 render={({ field }) => (
                   <FormItem>
                     {/* Label */}
-                    <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
+                    <FormLabel className="text-base font-medium text-[#2E2E30] font-roboto">
                       {t("phone")}
                     </FormLabel>
 
@@ -154,7 +163,7 @@ export default function AddressForm({ onSubmitAddress, setOpen, open }: AddressF
                 render={({ field }) => (
                   <FormItem>
                     {/* Label */}
-                    <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
+                    <FormLabel className="text-base font-medium text-[#2E2E30] font-roboto">
                       {t("city")}
                     </FormLabel>
 
@@ -184,7 +193,7 @@ export default function AddressForm({ onSubmitAddress, setOpen, open }: AddressF
                 render={({ field }) => (
                   <FormItem>
                     {/* Label */}
-                    <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
+                    <FormLabel className="text-base font-medium text-[#2E2E30] font-roboto">
                       {t("latitude")}
                     </FormLabel>
 
@@ -212,7 +221,7 @@ export default function AddressForm({ onSubmitAddress, setOpen, open }: AddressF
                 render={({ field }) => (
                   <FormItem>
                     {/* Label */}
-                    <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
+                    <FormLabel className="text-base font-medium text-[#2E2E30] font-roboto">
                       {t("longitude")}
                     </FormLabel>
 

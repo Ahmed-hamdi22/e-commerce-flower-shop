@@ -88,17 +88,17 @@ export default function RevenueChart({ dailyRevenue, monthlyRevenue }: RevenueCh
                 <Area
                   type="monotone"
                   dataKey="value"
-                  stroke="#ec4899"
-                  fill="url(#custom-rose-900)"
+                  stroke="#0063D0"
+                  fill="url(#dashboard-revenue)"
                   strokeWidth={2}
                   dot={<ChartDot maxValue={maxValue} formatCurrency={formatCurrency} />}
                 />
 
                 {/* Linear gradient */}
                 <defs>
-                  <linearGradient id="custom-rose-900" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#ec4899" stopOpacity={0.4} />
-                    <stop offset="100%" stopColor="#ec4899" stopOpacity={0.05} />
+                  <linearGradient id="dashboard-revenue" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#0063D0" stopOpacity={0.35} />
+                    <stop offset="100%" stopColor="#0063D0" stopOpacity={0.05} />
                   </linearGradient>
                 </defs>
               </AreaChart>

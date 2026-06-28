@@ -13,10 +13,10 @@ export default function TestimonialSection() {
 
             {/* Section Background Image */}
             <Image
-              src={`/assets/images/testimonials background.png`}
+              src={`/assets/images/testimonials-background.png`}
               alt=""
               fill
-              sizes="100%"
+              sizes="100vw"
               className="object-cover"
             />
           </div>

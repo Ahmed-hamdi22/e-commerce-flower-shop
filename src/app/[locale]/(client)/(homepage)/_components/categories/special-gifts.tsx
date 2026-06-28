@@ -14,7 +14,7 @@ export default function SpecialGifts() {
       {/* First gift box */}
       <div className="col-span-4 relative rounded-[.9rem] h-[272px] overflow-hidden flex flex-col justify-center items-end  rtl:items-start">
         {/* Gift box image */}
-        <Image className="flex" src="/img3.png" alt="" fill sizes="400px" priority />
+        <Image className="flex" src="/img3.png" alt="" fill sizes="400px" />
 
         {/* Overlay content for the first gift box */}
         <div className="z-10 relative text-white  text-right mr-3">
@@ -40,7 +40,7 @@ export default function SpecialGifts() {
       {/* Second gift box */}
       <div className="col-span-4 relative rounded-[.9rem] h-[272px] overflow-hidden  flex flex-col justify-center items-end rtl:items-start">
         {/* Gift box image */}
-        <Image className="object-cover w-full" src="/img2.png" alt="" fill sizes="400px" priority />
+        <Image className="object-cover w-full" src="/img2.png" alt="" fill sizes="400px" />
 
         {/* Overlay content for the second gift box */}
         <div className="z-10 relative text-white text-right mr-3">
@@ -66,7 +66,7 @@ export default function SpecialGifts() {
       {/* Third gift box */}
       <div className="col-span-4 relative rounded-[.9rem] h-[272px] overflow-hidden  flex flex-col justify-center items-end rtl:items-start">
         {/* Gift box image */}
-        <Image className="object-cover w-full" src="/img1.png" alt="" fill sizes="400px" priority />
+        <Image className="object-cover w-full" src="/img1.png" alt="" fill sizes="400px" />
 
         {/* Overlay content for the third gift box */}
         <div className="z-10 relative text-white text-right mr-3">

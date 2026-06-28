@@ -7,10 +7,11 @@ import PopularItems from "./_components/popular-items";
 import GallerySection from "./_components/gallery";
 import TestimonialSection from "./_components/testimonials";
 import CompaniesSection from "./_components/partner-companies";
+import FaqContent from "../faq/_components/faq-content";
 
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
   // Variables
-  const payload = await fetchCategories(searchParams);
+  const payload = await fetchCategories({});
 
   return (
     <main className="w-full">
@@ -28,6 +29,9 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
 
       {/* Gallery */}
       <GallerySection />
+
+      {/* Common questions */}
+      <FaqContent />
 
       {/* Testimonials */}
       <TestimonialSection />

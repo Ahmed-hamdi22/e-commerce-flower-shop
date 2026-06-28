@@ -4,7 +4,9 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth";
 import { getTranslations } from "next-intl/server";
 
-export default async function OrderMessage() {
+export default async function OrderMessage({ order }: { order: Order | null }) {
+  if (!order) return null;
+
   // Translations
   const t = await getTranslations();
 

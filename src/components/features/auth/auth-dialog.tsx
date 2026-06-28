@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import dynamic from "next/dynamic";
 import { DialogTrigger } from "@radix-ui/react-dialog";
 import { useTranslations } from "next-intl";
@@ -78,11 +84,11 @@ export default function AuthDialog({ children }: { children: React.ReactNode }) 
       <DialogTrigger asChild>{children}</DialogTrigger>
 
       {/* Main dialog container */}
-      <DialogContent>
+      <DialogContent className="w-[92vw] max-w-[92vw] gap-5 rounded-2xl border-custom-rose-100 bg-white p-6 shadow-2xl sm:max-w-[560px] md:p-8 max-h-[90vh] overflow-y-auto">
         {/* Dialog header*/}
-        <DialogHeader>
+        <DialogHeader className="space-y-2">
           {/* Dialog title*/}
-          <DialogTitle className="text-left font-normal my-3 text-2xl rtl:text-right ms-2 rtl:me-2 ">
+          <DialogTitle className="text-left font-semibold text-2xl text-blue-gray-900 rtl:text-right">
             {/* Return title base on state*/}
             {authState === "login" && t("login-title")}
             {authState === "register" && t("register-title")}
@@ -90,6 +96,13 @@ export default function AuthDialog({ children }: { children: React.ReactNode }) 
             {authState === "set-password" && t("set-password-title")}
             {authState === "verify-otp" && t("verify-code-title")}
           </DialogTitle>
+          <DialogDescription className="sr-only">
+            {authState === "login" && t("login-title")}
+            {authState === "register" && t("register-title")}
+            {authState === "forgot-password" && t("forgot-password-title")}
+            {authState === "set-password" && t("set-password-title")}
+            {authState === "verify-otp" && t("verify-code-title")}
+          </DialogDescription>
         </DialogHeader>
 
         {/* Login form */}

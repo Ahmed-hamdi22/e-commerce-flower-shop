@@ -57,8 +57,8 @@ export default function Orders({ orders }: OrdersPropes) {
                   >
                     {/* Product image */}
                     <Image
-                      src={item.product.imgCover || "placeholder-image.jpg"}
-                      alt={item.product.title || "placeholder-image.jpg"}
+                      src={item.product.imgCover || "/assets/images/coming-soon.png"}
+                      alt={item.product.title || "Product image"}
                       width={100}
                       height={100}
                       className="rounded-lg object-cover"

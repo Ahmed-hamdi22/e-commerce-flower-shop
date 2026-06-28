@@ -1,13 +1,14 @@
 "use client";
 
 import { removeCartItem } from "@/lib/actions/cart.action";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 export default function useRemoveCartItem() {
   // Translation
   const t = useTranslations();
+  const queryClient = useQueryClient();
 
   // Mutation
   const { isPending, error, mutate } = useMutation({
@@ -17,6 +18,7 @@ export default function useRemoveCartItem() {
       return response;
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
       toast.success(t("delete-successfully"));
     },
     onError: () => {

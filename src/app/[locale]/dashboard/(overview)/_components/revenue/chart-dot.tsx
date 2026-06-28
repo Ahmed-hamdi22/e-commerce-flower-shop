@@ -6,10 +6,10 @@ export default function ChartDot({ cx, cy, payload, maxValue, formatCurrency }: 
   return (
     <>
       {/* Highlighted point */}
-      <circle cx={cx} cy={cy} r={6} fill="#ec4899" stroke="#fff" strokeWidth={2} />
+      <circle cx={cx} cy={cy} r={6} fill="#0063D0" stroke="#fff" strokeWidth={2} />
 
       {/* Text label above the dot showing the formatted revenue */}
-      <text x={cx} y={cy - 10} textAnchor="middle" fill="#ec4899" fontWeight="bold" fontSize={12}>
+      <text x={cx} y={cy - 10} textAnchor="middle" fill="#0063D0" fontWeight="bold" fontSize={12}>
         {formatCurrency(payload.value)}
       </text>
     </>

@@ -13,15 +13,15 @@ export function useAddProduct() {
   // Navigation
   const router = useRouter();
 
-  // Mutation 
+  // Mutation
   const mutation = useMutation({
     mutationFn: addProducts,
     onSuccess: () => {
-      toast.success(t('product-added-successfully'));
+      toast.success(t("product-added-successfully"));
       router.push("/dashboard/products");
     },
-    onError: (error: any) => {
-      toast.error(error.message || t('product-added-failed'));
+    onError: (error: Error) => {
+      toast.error(error.message || t("product-added-failed"));
     },
   });
 

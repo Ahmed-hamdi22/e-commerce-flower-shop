@@ -16,7 +16,7 @@ export async function OrderStatus() {
     0,
   );
 
-  const customColors = ["#00A85F", "#197FD2", "#E93538"];
+  const customColors = ["#12B76A", "#0063D0", "#D50000"];
 
   const chartData = filteredOrders.map(
     (item: { _id: string | null; count: number }, index: number) => {

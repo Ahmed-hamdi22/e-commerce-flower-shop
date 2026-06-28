@@ -1,6 +1,5 @@
 "use client";
 
-import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -16,6 +15,8 @@ import {
 import { Button } from "@/components/ui/button";
 import useLogin from "@/hooks/auth/use-login";
 import { Link } from "@/i18n/routing";
+import { Lock, Mail } from "lucide-react";
+import AuthInput from "./auth-input";
 
 export default function LoginForm({
   onStateChange,
@@ -53,7 +54,7 @@ export default function LoginForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 min-w-96">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
         {/* Email Filed */}
         <FormField
           control={form.control}
@@ -61,8 +62,8 @@ export default function LoginForm({
           render={({ field }) => (
             <FormItem>
               <FormLabel className="sr-only">{t("email")}</FormLabel>
-              <FormControl className="w-full border-none shadow-[0px_1px_10px_0px_rgba(0,0,0,0.1)]">
-                <Input type="email" placeholder={t("email")} {...field} />
+              <FormControl>
+                <AuthInput icon={Mail} type="email" placeholder={t("email")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -76,8 +77,8 @@ export default function LoginForm({
           render={({ field }) => (
             <FormItem>
               <FormLabel className="sr-only">{t("password")}</FormLabel>
-              <FormControl className="w-full border-none  shadow-[0px_1px_10px_0px_rgba(0,0,0,0.1)]">
-                <Input type="password" placeholder={t("password")} {...field} />
+              <FormControl>
+                <AuthInput icon={Lock} isPassword placeholder={t("password")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -118,7 +119,7 @@ export default function LoginForm({
         {/* Login Button */}
         <Button
           type="submit"
-          className="w-full h-[50px]  rounded-3xl bg-custom-rose-900 hover:bg-custom-rose-800  mb-3"
+          className="w-full h-12 rounded-xl bg-custom-rose-900 hover:bg-custom-rose-800 mb-3"
         >
           {t("login")}
         </Button>

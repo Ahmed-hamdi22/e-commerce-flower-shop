@@ -13,11 +13,25 @@ type Product = {
 };
 
 type PopularItemsGridProps = {
-  categoryId: string;
+  categoryId?: string;
   searchParams: SearchParams;
 };
 
-async function fetchProducts(categoryId: string, searchParams: string) {
+function getPopularProducts(payload: unknown): Product[] {
+  if (!payload || typeof payload !== "object") return [];
+
+  const responsePayload = payload as {
+    products?: Product[];
+    data?: { products?: Product[] };
+  };
+
+  if (Array.isArray(responsePayload.products)) return responsePayload.products;
+  if (Array.isArray(responsePayload.data?.products)) return responsePayload.data.products;
+
+  return [];
+}
+
+async function fetchProducts(searchParams: string) {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API}/filtered-products?${searchParams}`,
@@ -40,24 +54,38 @@ export default async function PopularItemsGrid({
 }: PopularItemsGridProps) {
   // Translation
   const t = await getTranslations();
-  const searchQuery = new URLSearchParams({
-    category: categoryId,
-    sort: "-sold",
-    ...searchParams,
+  const searchQuery = new URLSearchParams();
+
+  Object.entries(searchParams).forEach(([key, value]) => {
+    if (value === undefined) return;
+
+    if (Array.isArray(value)) {
+      value.forEach((item) => searchQuery.append(key, item));
+      return;
+    }
+
+    searchQuery.set(key, value);
   });
 
-  const payload = await fetchProducts(categoryId, searchQuery.toString());
+  if (categoryId) {
+    searchQuery.set("category", categoryId);
+  }
+
+  searchQuery.set("sort", "-sold");
+
+  const payload = await fetchProducts(searchQuery.toString());
+  const products = getPopularProducts(payload);
 
   return (
     <div className="grid grid-cols-4 gap-6 justify-start">
       {/* Show a "Coming Soon" message if no products are available */}
-      {payload?.products.length === 0 ? (
+      {products.length === 0 ? (
         <div className="col-span-4 min-h-80 flex items-center justify-center text-center text-xl font-semibold text-blue-gray-900">
           {t("coming-soon")}
         </div>
       ) : (
         // Grid displaying the popular products
-        payload?.products.map((product: Product, index: number) => (
+        products.map((product: Product, index: number) => (
           <ProductCard product={product} key={index} />
         ))
       )}

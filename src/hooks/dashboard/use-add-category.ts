@@ -20,7 +20,7 @@ export function UseAddCategory() {
       toast.success(t("category-added-successfully"));
       router.push("/dashboard/categories");
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
       toast.error(error.message || t("category-add-failed"));
     },
   });

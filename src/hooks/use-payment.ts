@@ -32,7 +32,7 @@ export function usePayment() {
       router.replace("/allOrders");
     },
     onError: (error) => {
-      toast.error(error.message || t("payment-failed"));
+      toast.error(error instanceof Error ? error.message : t("payment-failed"));
     },
   });
 

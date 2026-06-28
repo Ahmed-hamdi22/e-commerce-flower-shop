@@ -36,6 +36,20 @@ export async function fetchCartOrders() {
 
 // fetch latest order
 
+function getOrdersFromPayload(payload: unknown): Order[] {
+  if (!payload || typeof payload !== "object") return [];
+
+  const responsePayload = payload as {
+    orders?: Order[];
+    data?: { orders?: Order[] };
+  };
+
+  if (Array.isArray(responsePayload.orders)) return responsePayload.orders;
+  if (Array.isArray(responsePayload.data?.orders)) return responsePayload.data.orders;
+
+  return [];
+}
+
 export async function fetchLatestOrder() {
   const tokenCookie = cookies().get(AUTH_COOKIE)?.value;
 
@@ -64,5 +78,7 @@ export async function fetchLatestOrder() {
     throw new Error(payload.error);
   }
 
-  return payload.orders[payload.orders.length - 1];
+  const orders = getOrdersFromPayload(payload);
+
+  return orders.length > 0 ? orders[orders.length - 1] : null;
 }

@@ -49,6 +49,7 @@ export default function ProductCarousel({ product }: ProductPropes) {
                       src={img}
                       alt={product.title ?? "Product Image"}
                       fill
+                      sizes="(max-width: 640px) 100vw, 479px"
                       className="object-cover rounded-lg"
                     />
                   )}{" "}
@@ -89,6 +90,7 @@ export default function ProductCarousel({ product }: ProductPropes) {
                       src={img}
                       alt={product.title ?? "Product Image"}
                       fill
+                      sizes="(max-width: 640px) 25vw, 120px"
                       className="object-cover"
                     />
                   )}{" "}

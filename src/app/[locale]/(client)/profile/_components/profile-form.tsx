@@ -88,7 +88,7 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
               render={({ field }) => (
                 <FormItem className="">
                   {/* Label */}
-                  <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
+                  <FormLabel className="text-base font-medium text-[#2E2E30] font-roboto">
                     {t("first-name")}
                   </FormLabel>
 
@@ -115,7 +115,7 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
               render={({ field }) => (
                 <FormItem>
                   {/* Label */}
-                  <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
+                  <FormLabel className="text-base font-medium text-[#2E2E30] font-roboto">
                     {t("last-name")}
                   </FormLabel>
 
@@ -142,7 +142,7 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
               render={({ field }) => (
                 <FormItem>
                   {/* Label */}
-                  <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
+                  <FormLabel className="text-base font-medium text-[#2E2E30] font-roboto">
                     {t("phone-number")}
                   </FormLabel>
 
@@ -165,7 +165,7 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
             {/* Email */}
             <FormItem>
               {/* Label */}
-              <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
+              <FormLabel className="text-base font-medium text-[#2E2E30] font-roboto">
                 {t("email")}
               </FormLabel>
 
@@ -187,7 +187,7 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
             {/* Gender */}
             <FormItem>
               {/* Label */}
-              <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
+              <FormLabel className="text-base font-medium text-[#2E2E30] font-roboto">
                 {t("gender")}
               </FormLabel>
 

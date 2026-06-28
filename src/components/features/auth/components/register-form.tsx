@@ -8,7 +8,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Select,
@@ -23,6 +22,8 @@ import { z } from "zod";
 import QuestionMarkRight from "@/components/common/question-mark-right";
 import { useRegister } from "@/hooks/auth/use-register";
 import FeedbackMessage from "@/components/common/feedback-message";
+import { Lock, Mail, Phone, User } from "lucide-react";
+import AuthInput from "./auth-input";
 
 type RegisterFormProps = {
   onStateChange: (state: AuthFormState) => void;
@@ -93,198 +94,131 @@ export default function RegisterForm({ onStateChange }: RegisterFormProps) {
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          {/* First name */}
-          <FormField
-            name="firstName"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                {/* Label */}
-                <FormLabel className="sr-only">{t("first-name")}</FormLabel>
-
-                {/* Input */}
-                <FormControl>
-                  <Input
-                    type="text"
-                    placeholder={t("first-name")}
-                    {...field}
-                    className="h-[52px] rounded-[20px] mt-7"
-                    style={{ boxShadow: "0px 1px 10px 0px rgba(0 , 0 , 0 , 0.1)" }}
-                  />
-                </FormControl>
-
-                {/* Message */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Last name */}
-          <FormField
-            name="lastName"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                {/* Label */}
-                <FormLabel className="sr-only">{t("last-name")}</FormLabel>
-
-                <FormControl>
-                  {/* Input */}
-                  <Input
-                    placeholder={t("last-name")}
-                    type="text"
-                    {...field}
-                    className="h-[52px] rounded-[20px]"
-                    style={{ boxShadow: "0px 1px 10px 0px rgba(0 , 0 , 0 , 0.1)" }}
-                  />
-                </FormControl>
-
-                {/* Message */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Phone number */}
-          <FormField
-            name="phone"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                {/* Label */}
-                <FormLabel className="sr-only">{t("phone-number")}</FormLabel>
-
-                {/* Input */}
-                <FormControl>
-                  <Input
-                    placeholder={t("phone-number")}
-                    type="text"
-                    {...field}
-                    className="h-[52px] rounded-[20px]"
-                    style={{ boxShadow: "0px 1px 10px 0px rgba(0 , 0 , 0 , 0.1)" }}
-                  />
-                </FormControl>
-
-                {/* Message */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Email */}
-          <FormField
-            name="email"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                {/* Label */}
-                <FormLabel className="sr-only">{t("email")}</FormLabel>
-
-                {/* Input */}
-                <FormControl>
-                  <Input
-                    placeholder={t("email")}
-                    type="email"
-                    {...field}
-                    className="h-[52px] rounded-[20px]"
-                    style={{ boxShadow: "0px 1px 10px 0px rgba(0 , 0 , 0 , 0.1)" }}
-                  />
-                </FormControl>
-
-                {/* Message */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Gender */}
-          <FormField
-            name="gender"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                {/* Label */}
-                <FormLabel className="sr-only">{t("gender")}</FormLabel>
-
-                {/* Select */}
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  {/* Trigger */}
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {/* First name */}
+            <FormField
+              name="firstName"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="sr-only">{t("first-name")}</FormLabel>
                   <FormControl>
-                    <SelectTrigger
-                      className="h-[52px] rounded-[20px]"
-                      style={{ boxShadow: "0px 1px 10px 0px rgba(0 , 0 , 0 , 0.1)" }}
-                    >
-                      <SelectValue placeholder={t("gender")} />
-                    </SelectTrigger>
+                    <AuthInput icon={User} type="text" placeholder={t("first-name")} {...field} />
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-                  {/* Select item */}
-                  <SelectContent>
-                    <SelectItem value="male">{t("male")}</SelectItem>
-                    <SelectItem value="female">{t("female")}</SelectItem>
-                  </SelectContent>
-                </Select>
+            {/* Last name */}
+            <FormField
+              name="lastName"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="sr-only">{t("last-name")}</FormLabel>
+                  <FormControl>
+                    <AuthInput icon={User} type="text" placeholder={t("last-name")} {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-                {/* Message */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            {/* Phone number */}
+            <FormField
+              name="phone"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="sr-only">{t("phone-number")}</FormLabel>
+                  <FormControl>
+                    <AuthInput icon={Phone} type="tel" placeholder={t("phone-number")} {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          {/* Password */}
-          <FormField
-            name="password"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                {/* Label */}
-                <FormLabel className="sr-only">{t("password")}</FormLabel>
+            {/* Gender */}
+            <FormField
+              name="gender"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="sr-only">{t("gender")}</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <div className="relative">
+                        <User className="pointer-events-none absolute start-4 top-1/2 z-10 h-4 w-4 -translate-y-1/2 text-custom-rose-800/70" />
+                        <SelectTrigger className="h-12 rounded-xl border-custom-rose-100 bg-white ps-11 shadow-[0px_8px_24px_rgba(122,30,34,0.08)] focus:ring-2 focus:ring-custom-rose-100">
+                          <SelectValue placeholder={t("gender")} />
+                        </SelectTrigger>
+                      </div>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="male">{t("male")}</SelectItem>
+                      <SelectItem value="female">{t("female")}</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-                {/* Input */}
-                <FormControl>
-                  <Input
-                    placeholder={t("password")}
-                    type="password"
-                    {...field}
-                    className="h-[52px] rounded-[20px]"
-                    style={{ boxShadow: "0px 1px 10px 0px rgba(0 , 0 , 0 , 0.1)" }}
-                  />
-                </FormControl>
+            {/* Email */}
+            <FormField
+              name="email"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem className="md:col-span-2">
+                  <FormLabel className="sr-only">{t("email")}</FormLabel>
+                  <FormControl>
+                    <AuthInput icon={Mail} type="email" placeholder={t("email")} {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-                {/* Message */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            {/* Password */}
+            <FormField
+              name="password"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="sr-only">{t("password")}</FormLabel>
+                  <FormControl>
+                    <AuthInput icon={Lock} isPassword placeholder={t("password")} {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          {/* Confirm password */}
-          <FormField
-            name="rePassword"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                {/* Label */}
-                <FormLabel className="sr-only">{t("confirm-password")}</FormLabel>
-
-                {/* Input */}
-                <FormControl>
-                  <Input
-                    placeholder={t("confirm-password")}
-                    type="password"
-                    {...field}
-                    className="h-[48px] rounded-[20px]"
-                    style={{ boxShadow: "0px 1px 10px 0px rgba(0 , 0 , 0 , 0.1)" }}
-                  />
-                </FormControl>
-
-                {/* Message */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            {/* Confirm password */}
+            <FormField
+              name="rePassword"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="sr-only">{t("confirm-password")}</FormLabel>
+                  <FormControl>
+                    <AuthInput
+                      icon={Lock}
+                      isPassword
+                      placeholder={t("confirm-password")}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
           {/* Content */}
           <p className="text-center text-sm py-4 flex items-center justify-center">
@@ -311,7 +245,7 @@ export default function RegisterForm({ onStateChange }: RegisterFormProps) {
           <button
             disabled={isPending}
             type="submit"
-            className="h-[50px] w-full bg-custom-rose-900 text-white rounded-[30px]"
+            className="h-12 w-full rounded-xl bg-custom-rose-900 text-white hover:bg-custom-rose-800 disabled:opacity-70"
           >
             {t("create-account-button")}
           </button>

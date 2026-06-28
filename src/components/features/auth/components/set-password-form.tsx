@@ -6,9 +6,10 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { useSetNewPassword } from "@/hooks/auth/use-set-password";
 import FeedbackMessage from "@/components/common/feedback-message";
+import { Lock } from "lucide-react";
+import AuthInput from "./auth-input";
 
 type SetPasswordProps = {
   email: string;
@@ -63,7 +64,7 @@ export default function SetPasswordForm({ email, onStateChange }: SetPasswordPro
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
         {/* Password field */}
         <FormField
           control={form.control}
@@ -71,12 +72,11 @@ export default function SetPasswordForm({ email, onStateChange }: SetPasswordPro
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input
-                  type="password"
+                <AuthInput
+                  icon={Lock}
+                  isPassword
                   {...field}
                   placeholder={t("create-password")}
-                  className="w-[528px] h-[52px] rounded-[20px] p-2"
-                  style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
                 />
               </FormControl>
               {/* Display validation errors */}
@@ -90,14 +90,13 @@ export default function SetPasswordForm({ email, onStateChange }: SetPasswordPro
           control={form.control}
           name="confirmPassword"
           render={({ field }) => (
-            <FormItem className="py-4">
+            <FormItem>
               <FormControl>
-                <Input
-                  type="password"
+                <AuthInput
+                  icon={Lock}
+                  isPassword
                   {...field}
                   placeholder={t("re-enter-password")}
-                  className="w-[528px] h-[52px] rounded-[20px] p-2"
-                  style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
                 />
               </FormControl>
               {/* Display validation errors */}
@@ -113,7 +112,7 @@ export default function SetPasswordForm({ email, onStateChange }: SetPasswordPro
         <Button
           type="submit"
           disabled={isPending}
-          className="bg-custom-rose-900 w-[528px] rounded-[30px] px-[31px] font-medium text-base hover:bg-custom-rose-800"
+          className="h-12 w-full rounded-xl bg-custom-rose-900 px-[31px] font-medium text-base hover:bg-custom-rose-800"
         >
           {isPending ? t("setting-new-password") : t("set-password")}
         </Button>

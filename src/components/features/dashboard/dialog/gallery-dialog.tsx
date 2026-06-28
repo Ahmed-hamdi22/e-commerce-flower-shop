@@ -76,8 +76,8 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
                       src={src}
                       alt={`category-image-${index}`}
                       fill
+                      sizes="(max-width: 1024px) 90vw, 789px"
                       className="object-contain rounded-2xl "
-                      priority={index === 0}
                     />
                   </div>
                 </CarouselItem>
@@ -92,7 +92,7 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
                 onDotClick={(index) => api?.scrollTo(index)}
                 dotClassName={(index) =>
                   `w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentIndex ? "bg-rose-500" : "bg-gray-300"
+                    index === currentIndex ? "bg-custom-rose-900" : "bg-gray-300"
                   }`
                 }
                 className="mb-4 rtl:flex-row-reverse"

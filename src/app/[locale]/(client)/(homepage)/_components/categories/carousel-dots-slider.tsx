@@ -47,11 +47,10 @@ export default function CarouselDotsSlider() {
         {/* Image */}
         <Image
           className="object-cover"
-          src="/Red-christmas-gifts-with-white-ribbon.png"
+          src="/red-christmas-gifts-with-white-ribbon.png"
           alt=""
           fill
           sizes="400px"
-          priority
         />
 
         {/* Content */}
@@ -95,7 +94,7 @@ export default function CarouselDotsSlider() {
                 alt="Slide"
                 width={400}
                 height={400}
-                priority
+                priority={idx === 0}
               />
 
               {/* Content */}
