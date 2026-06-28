@@ -1,28 +1,27 @@
 import { JSON_HEADER } from "@/lib/constants/api.constant";
-import { decode } from "next-auth/jwt";
-import { cookies } from "next/headers";
+import getToken from "@/lib/utils/get-token";
 
 export async function fetchOrders() {
-  // Get the token from cookies
-  const token = cookies().get("next-auth.session-token")?.value;
+  const token = await getToken();
 
-  if (!token) {
-    throw new Error("Authentication token is missing. Please login to view your orders.");
+  if (!token || !process.env.API) {
+    return { orders: [] };
   }
 
-  // Decode the session token to extract user information
-  const userToken = await decode({ secret: process.env.NEXTAUTH_SECRET!, token });
+  try {
+    const response = await fetch(process.env.API + `/orders`, {
+      headers: { ...JSON_HEADER, Authorization: `Bearer ${token}` },
+      cache: "no-store",
+    });
 
-  const response = await fetch(process.env.API + `/orders`, {
-    headers: { ...JSON_HEADER, Authorization: `Bearer ${userToken?.token}` },
-  });
+    const payload: APIResponse<PaginatedResponse<{ orders: Order[] }>> = await response.json();
 
-  const payload: APIResponse<PaginatedResponse<{ orders: Order[] }>> = await response.json();
+    if (!response.ok || "error" in payload) {
+      return { orders: [] };
+    }
 
-  // Handle error
-  if ("error" in payload) {
-    throw new Error(payload.error);
+    return payload;
+  } catch {
+    return { orders: [] };
   }
-
-  return payload;
 }

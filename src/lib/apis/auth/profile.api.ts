@@ -1,28 +1,31 @@
-import { AUTH_COOKIE } from "@/lib/constants/auth.constant";
-import { decode } from "next-auth/jwt";
-import { cookies } from "next/headers";
+import getToken from "@/lib/utils/get-token";
 
 
 export async function fetchUserData() {
-  const tokenCookies = cookies().get(AUTH_COOKIE)?.value;
-  const token = await decode({ token: tokenCookies, secret: process.env.NEXTAUTH_SECRET! });
+  const token = await getToken();
+
+  if (!token || !process.env.API) return null;
 
   const apiUrl = `${process.env.API}/auth/profile-data`;
 
-  const response = await fetch(apiUrl, {
-    method: "GET",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token?.token}`,
-    },
-    cache: "no-store",
-  });
-  const payload: APIResponse<ProfileResponse> = await response.json();
+  try {
+    const response = await fetch(apiUrl, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      cache: "no-store",
+    });
+    const payload: APIResponse<ProfileResponse> = await response.json();
 
-  if ("error" in payload) {
-    throw new Error(payload.error);
+    if (!response.ok || "error" in payload) {
+      return null;
+    }
+
+    return payload.user;
+  } catch {
+    return null;
   }
-
-  return payload.user;
 }

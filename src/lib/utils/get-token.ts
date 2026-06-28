@@ -6,10 +6,15 @@ export default async function getToken() {
   const cookieStore = cookies();
   const tokenCookies =
     cookieStore.get(AUTH_COOKIE)?.value || cookieStore.get(`__Secure-${AUTH_COOKIE}`)?.value;
+  const secret = process.env.NEXTAUTH_SECRET || process.env.AUTH_SECRET;
 
-  if (!tokenCookies) return null;
+  if (!tokenCookies || !secret) return null;
 
-  const token = await decode({ token: tokenCookies, secret: process.env.NEXTAUTH_SECRET! });
+  try {
+    const token = await decode({ token: tokenCookies, secret });
 
-  return token?.token;
+    return token?.token;
+  } catch {
+    return null;
+  }
 }

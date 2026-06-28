@@ -1,23 +1,38 @@
 import { searchParamsToString } from "../utils/convert-search-params";
 import { getTranslations } from "next-intl/server";
 
+const EMPTY_PRODUCTS_PAYLOAD: PaginatedResponse<{ products: Product[] }> = {
+  products: [],
+  metadata: {
+    currentPage: 1,
+    limit: 0,
+    totalPages: 0,
+    totalItems: 0,
+  },
+};
+
 export async function fetchProducts(searchParams: SearchParams) {
-  const response = await fetch(
-    `${process.env.API}/products?${searchParamsToString(searchParams)}`,
-    {
-      cache: "no-cache",
-    },
-  );
+  if (!process.env.API) return EMPTY_PRODUCTS_PAYLOAD;
 
-  const payload: APIResponse<PaginatedResponse<{ products: Product[] }>> = await response.json();
+  try {
+    const response = await fetch(
+      `${process.env.API}/products?${searchParamsToString(searchParams)}`,
+      {
+        cache: "no-cache",
+      },
+    );
 
-  if ("error" in payload || !response.ok) {
-    if ("error" in payload) {
-      throw new Error(payload.error);
+    const payload: APIResponse<PaginatedResponse<{ products: Product[] }>> = await response.json();
+
+    if ("error" in payload || !response.ok) {
+      return EMPTY_PRODUCTS_PAYLOAD;
     }
-    throw new Error("Failed to fetch Products");
+
+    return payload;
+  } catch (error) {
+    console.error("Error fetching products: ", error);
+    return EMPTY_PRODUCTS_PAYLOAD;
   }
-  return payload;
 }
 
 // Function to fetch product details from the API
@@ -44,20 +59,27 @@ export const fetchProductDetails = async (productid: string) => {
 
 // Handle related items function
 export default async function fetchProductsByCategory(category: string) {
+  if (!process.env.API) return [];
+
   // Fetch api
   const apiUrl = `${process.env.API}/products?category=${category}&limit=4`;
-  const response = await fetch(apiUrl, {
-    method: "GET",
-    cache: "no-store",
-  });
+  try {
+    const response = await fetch(apiUrl, {
+      method: "GET",
+      cache: "no-store",
+    });
 
-  // Parse the JSON response
-  const payload: APIResponse<PaginatedResponse<{ products: Product[] }>> = await response.json();
+    // Parse the JSON response
+    const payload: APIResponse<PaginatedResponse<{ products: Product[] }>> = await response.json();
 
-  // Handle error
-  if ("error" in payload) {
-    throw new Error(payload.error);
+    // Handle error
+    if ("error" in payload || !response.ok) {
+      return [];
+    }
+    return payload.products || [];
+  } catch (error) {
+    console.error("Error fetching related products: ", error);
+    return [];
   }
-  return payload.products;
 }
 

@@ -25,13 +25,15 @@ function getProductsFromPayload(payload: unknown): ProductType[] {
 }
 
 async function fetchProducts(url: string) {
+  if (!url) return null;
+
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, { cache: "no-store" });
     const payload: APIResponse<PaginatedResponse<{ products: ProductType[] }>> =
       await response.json();
 
-    if ("error" in payload) {
-      throw new Error(payload.error);
+    if (!response.ok || "error" in payload) {
+      throw new Error("error" in payload ? payload.error : "Failed to fetch products");
     }
 
     return payload;
@@ -42,9 +44,9 @@ async function fetchProducts(url: string) {
 }
 
 async function fetchBestSellerProducts() {
-  const bestSellerPayload = await fetchProducts(
-    `${process.env.NEXT_PUBLIC_API}/filtered-products?sort=-sold&limit=6`,
-  );
+  if (!process.env.API) return [];
+
+  const bestSellerPayload = await fetchProducts(`${process.env.API}/products?sort=-sold&limit=6`);
   const bestSellerProducts = getProductsFromPayload(bestSellerPayload);
 
   if (bestSellerProducts.length > 0) return bestSellerProducts;

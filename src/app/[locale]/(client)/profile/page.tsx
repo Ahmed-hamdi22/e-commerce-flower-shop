@@ -4,7 +4,7 @@ import { fetchUserData } from "@/lib/apis/auth/profile.api";
 
 export default async function ProfilePage() {
   // Variables
-  const userData = (await fetchUserData()) || [];
+  const userData = (await fetchUserData()) || undefined;
 
   return (
     <div className="my-20 container">

@@ -32,6 +32,8 @@ function getPopularProducts(payload: unknown): Product[] {
 }
 
 async function fetchProducts(searchParams: string) {
+  if (!process.env.API) return null;
+
   try {
     const response = await fetch(`${process.env.API}/products?${searchParams}`, {
       cache: "no-store",
