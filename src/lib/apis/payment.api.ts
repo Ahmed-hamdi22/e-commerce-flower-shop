@@ -1,5 +1,4 @@
 "use server";
-import { headers } from "next/headers";
 import getToken from "@/lib/utils/get-token";
 
 type PaymentActionResult<T = unknown> =
@@ -13,33 +12,10 @@ function paymentError<T = unknown>(message = "Please login first"): PaymentActio
 async function getAuthenticatedToken() {
   return getToken();
 }
-
-function getAppUrl() {
-  const fallbackUrl = "https://e-commerce-flower-shop-ulqj.vercel.app";
-  const configuredUrl = process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_APP_URL;
-  const requestOrigin = headers().get("origin");
-  const appUrl = requestOrigin || configuredUrl || fallbackUrl;
-
-  if (process.env.NODE_ENV === "production" && appUrl.includes("localhost")) {
-    return fallbackUrl;
-  }
-
-  return appUrl.replace(/\/$/, "");
-}
-
-function getPaymentRedirectUrls(locale: string) {
-  const safeLocale = locale === "ar" ? "ar" : "en";
-  const appUrl = getAppUrl();
-
-  return {
-    success_url: `${appUrl}/${safeLocale}/allOrders`,
-    cancel_url: `${appUrl}/${safeLocale}/checkout`,
-  };
-}
 // checkoutWithStripe
 
 export async function checkoutWithStripe(
-  payload: { shippingAddress: ShippingAddress; locale: string },
+  shippingAddress: ShippingAddress,
 ): Promise<PaymentActionResult<{ url: string }>> {
   const token = await getAuthenticatedToken();
 
@@ -56,8 +32,7 @@ export async function checkoutWithStripe(
       },
       cache: "no-store",
       body: JSON.stringify({
-        shippingAddress: payload.shippingAddress,
-        ...getPaymentRedirectUrls(payload.locale),
+        shippingAddress,
       }),
     });
 
@@ -123,7 +98,7 @@ function hasCreatedOrder(payload: unknown) {
 }
 
 export async function createCashOrder(
-  orderPayload: { shippingAddress: ShippingAddress; locale: string },
+  shippingAddress: ShippingAddress,
 ): Promise<PaymentActionResult<unknown>> {
   const token = await getAuthenticatedToken();
 
@@ -140,7 +115,7 @@ export async function createCashOrder(
       },
       cache: "no-store",
       body: JSON.stringify({
-        shippingAddress: orderPayload.shippingAddress,
+        shippingAddress,
       }),
     });
 
