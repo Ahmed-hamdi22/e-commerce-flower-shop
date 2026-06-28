@@ -19,12 +19,12 @@ export default async function PopularItems({ searchParams, categories }: Popular
     : searchParams.category || categories[0]?._id;
 
   return (
-    <div className="mb-20 container">
+    <div className="mb-10 container px-4 sm:px-0 lg:mb-20">
       {/* Section header */}
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col gap-5 mb-6 sm:flex-row sm:items-center sm:justify-between">
         <div className="relative">
           {/* Section title */}
-          <h3 className="text-custom-blue-gray-600 font-bold text-[30px] z-10 font-inter">
+          <h3 className="text-custom-blue-gray-600 font-bold text-2xl z-10 font-inter sm:text-[30px]">
             {t("popular-items")}
           </h3>
 

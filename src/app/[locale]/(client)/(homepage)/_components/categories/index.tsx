@@ -20,12 +20,12 @@ export default function Categories({ categories }: CategoriesPropes) {
   const t = useTranslations();
 
   return (
-    <div className="container">
+    <div className="container px-4 sm:px-0">
       {/* Categories Carousel */}
       <Carousel>
         <CarouselContent className="flex flex-row py-5">
           {categories.map((category) => (
-            <CarouselItem key={category._id} className=" lg:basis-1/5 ">
+            <CarouselItem key={category._id} className="basis-4/5 sm:basis-1/2 md:basis-1/3 lg:basis-1/5">
               <Link href={`/products/${category.slug}`}>
                 <div className="bg-custom-rose-50 rounded-xl  flex items-center p-4 gap-3">
                   {/* Category icon */}
@@ -62,9 +62,9 @@ export default function Categories({ categories }: CategoriesPropes) {
       <SpecialGifts />
 
       {/* Section Features */}
-      <div className="bg-custom-rose-50 mt-12 grid grid-cols-4 p-10 rounded-[.9rem]  ">
+      <div className="bg-custom-rose-50 mt-12 grid grid-cols-1 gap-5 p-5 rounded-[.9rem] sm:grid-cols-2 sm:p-8 lg:grid-cols-4 lg:p-10">
         {/* Feature 1 */}
-        <div className="flex items-center col-span-1 gap-3">
+        <div className="flex items-center gap-3">
           <div className="bg-custom-rose-900 p-3 rounded-full ">
             {/* Icon */}
             <BsTruck className="w-6 h-6 text-white" />
@@ -78,7 +78,7 @@ export default function Categories({ categories }: CategoriesPropes) {
         </div>
 
         {/* Feature 2 */}
-        <div className="flex items-center col-span-1 gap-3">
+        <div className="flex items-center gap-3">
           <div className="bg-custom-rose-900 p-3 rounded-full">
             {/* Icon */}
             <TfiReload className="w-6 h-6 text-white " />
@@ -93,7 +93,7 @@ export default function Categories({ categories }: CategoriesPropes) {
         </div>
 
         {/* Feature 3 */}
-        <div className="flex items-center col-span-1 gap-3">
+        <div className="flex items-center gap-3">
           <div className="bg-custom-rose-900 p-3 rounded-full ">
             {/* Icon */}
             <LuWalletMinimal className="w-6 h-6  text-white" />
@@ -107,7 +107,7 @@ export default function Categories({ categories }: CategoriesPropes) {
         </div>
 
         {/* Feature 4 */}
-        <div className="flex items-center col-span-1 gap-3">
+        <div className="flex items-center gap-3">
           <div className="bg-custom-rose-900 p-3 rounded-full ">
             {/* Icon */}
             <BsHeadset className="w-6 h-6  text-white" />

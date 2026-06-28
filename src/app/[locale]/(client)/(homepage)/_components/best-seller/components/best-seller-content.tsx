@@ -16,7 +16,7 @@ export default function BestSellerContent() {
 
       {/* Best seller description */}
       <div className="space-y-2">
-        <p className="text-blue-gray-900 text-[30px] font-bold capitalize leading-[40.8px] font-inter">
+        <p className="text-blue-gray-900 text-2xl font-bold capitalize leading-tight font-inter sm:text-[30px] sm:leading-[40.8px]">
           {/* Headline */}
           {t.rich("best-selling-headline", {
             span: (v) => <span className="text-custom-rose-900">{v}</span>,

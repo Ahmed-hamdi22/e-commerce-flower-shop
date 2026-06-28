@@ -33,14 +33,14 @@ export default function AboutUsContent() {
       {/* Introductory content */}
       <div>
         {/* Main title with highlighted words */}
-        <p className="text-blue-gray-900 text-3xl font-bold w-[603px]">
+        <p className="text-blue-gray-900 text-2xl font-bold max-w-full sm:text-3xl lg:w-[603px]">
           {t.rich("about-us-headline", {
             span: (v) => <span className="text-custom-rose-900">{v}</span>,
           })}
         </p>
 
         {/* Subtitle/Description */}
-        <p className="text-blue-gray-500 w-[631px] mt-2">{t("about-us-paragraph")}</p>
+        <p className="text-blue-gray-500 max-w-full mt-2 lg:w-[631px]">{t("about-us-paragraph")}</p>
       </div>
 
       {/* Discover more button */}
@@ -63,7 +63,7 @@ export default function AboutUsContent() {
       </Button>
 
       {/* About us features/offers */}
-      <div className="about-us-offers grid grid-cols-2">
+      <div className="about-us-offers grid grid-cols-1 gap-2 sm:grid-cols-2">
         {aboutUsOffers.map((offer, index) => (
           <div key={index} className="mb-2 flex justify-start items-center">
             {/* Check Icon */}

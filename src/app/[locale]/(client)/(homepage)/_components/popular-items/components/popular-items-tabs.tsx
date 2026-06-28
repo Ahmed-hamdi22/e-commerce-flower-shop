@@ -34,9 +34,9 @@ export default function PopularItemsTabs({ tabsData }: PopularItemsTabsProps) {
   };
 
   return (
-    <div className="categories">
+    <div className="categories w-full overflow-x-auto pb-2 sm:w-auto sm:overflow-visible sm:pb-0">
       {/* Render the list of category tabs */}
-      <ul className="list-none flex gap-6 text-xl font-normal text-blue-gray-900 font-inter">
+      <ul className="list-none flex min-w-max gap-4 text-base font-normal text-blue-gray-900 font-inter sm:gap-6 sm:text-xl">
         {tabsData.slice(0, 4).map((tab: Category) => (
           // Category tab
           <li

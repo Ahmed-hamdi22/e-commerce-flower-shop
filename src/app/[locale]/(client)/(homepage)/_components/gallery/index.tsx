@@ -12,7 +12,7 @@ export default function GallerySection() {
             {Array.from({ length: 5 }).map((image, i) => (
               <div
                 key={i}
-                className={`w-full h-[411px] relative ${
+                className={`w-full h-[280px] relative sm:h-[360px] lg:h-[411px] ${
                   i === 3 ? "sm:col-span-2" : ""
                 }  rounded-[40px] overflow-hidden`}
               >
@@ -51,7 +51,7 @@ function GalleryHeading() {
         </p>
 
         {/* The Decorate Line */}
-        <div className="absolute start-0 top-[61px] z-0 w-[338px] h-[17px] bg-main-color ltr:rounded-tr-[20px] ltr:rounded-br-[20px] rtl:rounded-tl-[20px] rtl:rounded-bl-[20px]  after:absolute after:bottom-0 after:start-0 after:w-[161px] after:h-[2px] after:bg-custom-rose-900"></div>
+        <div className="absolute start-0 top-[61px] z-0 w-full max-w-[338px] h-[17px] bg-main-color ltr:rounded-tr-[20px] ltr:rounded-br-[20px] rtl:rounded-tl-[20px] rtl:rounded-bl-[20px] after:absolute after:bottom-0 after:start-0 after:w-[48%] after:max-w-[161px] after:h-[2px] after:bg-custom-rose-900"></div>
       </div>
     </>
   );

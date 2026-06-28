@@ -60,10 +60,10 @@ export default function CarouselSlider() {
         <CarouselContent>
           {Array.from({ length: 5 }).map((_, i) => (
             // Carousel Items
-            <CarouselItem key={i} className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4 ">
+            <CarouselItem key={i} className="basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
               <div className="p-1">
                 <Card className="border-none rounded-[100px] ltr:rounded-tl-[50px] rtl:rounded-tr-[50px] bg-white">
-                  <CardContent className="flex flex-col aspect-square p-6 box">
+                  <CardContent className="flex min-h-[320px] flex-col p-5 box sm:p-6 md:aspect-square">
                     {/* User Avatar & User Name */}
                     <div className="flex justify-between items-center max-w-[223px] mb-6">
                       <div className="relative w-[60px] h-[60px] flex justify-center items-center">
@@ -126,9 +126,9 @@ export default function CarouselSlider() {
           ))}
         </CarouselContent>
         {/* Scroll to Previous Button */}
-        <CarouselPrevious className="absolute ltr:left-1 rtl:left-[97.25%] rtl:rotate-180 text-white bg-custom-rose-900 hover:bg-custom-rose-600 hover:text-none" />
+        <CarouselPrevious className="absolute hidden ltr:left-1 rtl:left-[97.25%] rtl:rotate-180 text-white bg-custom-rose-900 hover:bg-custom-rose-600 hover:text-none sm:flex" />
         {/* Scroll to Next Button */}
-        <CarouselNext className="absolute ltr:right-1 rtl:right-[97.25%] rtl:rotate-180 text-white bg-custom-rose-900 hover:bg-custom-rose-600 hover:text-none" />
+        <CarouselNext className="absolute hidden ltr:right-1 rtl:right-[97.25%] rtl:rotate-180 text-white bg-custom-rose-900 hover:bg-custom-rose-600 hover:text-none sm:flex" />
       </Carousel>
 
       {/* Dots Buttons */}

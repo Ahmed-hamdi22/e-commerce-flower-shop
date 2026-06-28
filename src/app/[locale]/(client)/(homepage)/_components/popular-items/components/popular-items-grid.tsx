@@ -79,10 +79,10 @@ export default async function PopularItemsGrid({
   const products = getPopularProducts(payload);
 
   return (
-    <div className="grid grid-cols-4 gap-6 justify-start">
+    <div className="grid grid-cols-1 gap-6 justify-start sm:grid-cols-2 lg:grid-cols-4">
       {/* Show a "Coming Soon" message if no products are available */}
       {products.length === 0 ? (
-        <div className="col-span-4 min-h-80 flex items-center justify-center text-center text-xl font-semibold text-blue-gray-900">
+        <div className="min-h-80 flex items-center justify-center text-center text-xl font-semibold text-blue-gray-900 sm:col-span-2 lg:col-span-4">
           {t("coming-soon")}
         </div>
       ) : (

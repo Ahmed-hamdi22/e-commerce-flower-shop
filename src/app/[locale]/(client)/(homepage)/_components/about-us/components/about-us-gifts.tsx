@@ -3,11 +3,11 @@ import React from "react";
 
 export default function AboutUsGifts() {
   return (
-    <div className="relative w-[530.49px] h-[376.95px] flex justify-between">
+    <div className="relative w-full max-w-[530.49px] h-[260px] flex justify-between sm:h-[376.95px]">
       {/* Main gift box */}
       <div
-        className="about-us-gift-one z-10 relative w-[302px] h-[344px] mt-[24.21px] rounded-b-[120px] overflow-hidden
-      ml-[27.49px] rounded-tl-[50px] rounded-tr-[120px] rtl:mr-[27.49px] rtl:rounded-tr-[50px] rtl:rounded-tl-[120px]"
+        className="about-us-gift-one z-10 relative w-[205px] h-[238px] mt-[18px] rounded-b-[86px] overflow-hidden
+      ml-4 rounded-tl-[36px] rounded-tr-[86px] rtl:mr-4 rtl:rounded-tr-[36px] rtl:rounded-tl-[86px] sm:w-[302px] sm:h-[344px] sm:mt-[24.21px] sm:rounded-b-[120px] sm:ml-[27.49px] sm:rounded-tl-[50px] sm:rounded-tr-[120px] sm:rtl:mr-[27.49px] sm:rtl:rounded-tr-[50px] sm:rtl:rounded-tl-[120px]"
       >
         <Image
           src="/assets/images/gift-box-1.png"
@@ -20,14 +20,14 @@ export default function AboutUsGifts() {
 
       {/* Border decoration */}
       <div
-        className="absolute w-[268.88px] rotate-[3.09deg] rtl:-rotate-[3.09] -z-1 h-[363px] border-4 border-custom-rose-900 rounded-b-[120px] left-3 rounded-tl-[50px] rounded-tr-[120px] 
-          rtl:right-3 rtl:rounded-tr-[50px] rtl:rounded-tl-[120px]"
+        className="absolute w-[184px] rotate-[3.09deg] rtl:-rotate-[3.09] -z-1 h-[250px] border-4 border-custom-rose-900 rounded-b-[86px] left-2 rounded-tl-[36px] rounded-tr-[86px] 
+          rtl:right-2 rtl:rounded-tr-[36px] rtl:rounded-tl-[86px] sm:w-[268.88px] sm:h-[363px] sm:rounded-b-[120px] sm:left-3 sm:rounded-tl-[50px] sm:rounded-tr-[120px] sm:rtl:right-3 sm:rtl:rounded-tr-[50px] sm:rtl:rounded-tl-[120px]"
       ></div>
 
       {/* Smaller gift boxes */}
-      <div className="flex flex-col pt-[15.97px] gap-2">
+      <div className="flex flex-col pt-3 gap-2 sm:pt-[15.97px]">
         {/* Second gift box */}
-        <div className="about-us-gift-two relative w-[193px] h-[193px] rounded-full">
+        <div className="about-us-gift-two relative w-[132px] h-[132px] rounded-full sm:w-[193px] sm:h-[193px]">
           <Image
             src="/assets/images/gift-box-2.png"
             alt="gift 2"
@@ -38,7 +38,7 @@ export default function AboutUsGifts() {
         </div>
 
         {/* Third gift box */}
-        <div className="about-us-gift-three relative w-[193px] h-[144px] rounded-s-[50px] rounded-e-[100px] overflow-hidden">
+        <div className="about-us-gift-three relative w-[132px] h-[100px] rounded-s-[34px] rounded-e-[70px] overflow-hidden sm:w-[193px] sm:h-[144px] sm:rounded-s-[50px] sm:rounded-e-[100px]">
           <Image
             src="/assets/images/gift-box-3.png"
             alt="gift 3"

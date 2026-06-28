@@ -63,10 +63,10 @@ export default async function BestSellerCarousel() {
   const products = await fetchBestSellerProducts();
 
   return (
-    <div className="overflow-hidden flex justify-center items-center col-span-3">
+    <div className="overflow-hidden flex justify-center items-center lg:col-span-3">
       {/* Show a "Coming Soon" message if no products are available */}
       {products.length === 0 ? (
-        <div className="col-span-4 min-h-80 text-center text-xl font-semibold text-blue-gray-900">
+        <div className="min-h-80 text-center text-xl font-semibold text-blue-gray-900">
           {t("coming-soon")}
         </div>
       ) : (
@@ -82,15 +82,15 @@ export default async function BestSellerCarousel() {
           {/* Carousel content */}
           <CarouselContent>
             {products.map((product: ProductType, index: number) => (
-              <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/3">
+              <CarouselItem key={product.id} className="basis-full sm:basis-1/2 lg:basis-1/3">
                 <ProductCard product={product} key={index} />
               </CarouselItem>
             ))}
           </CarouselContent>
 
           {/* Carousel navigation */}
-          <CarouselPrevious className="text-white left-[0.1rem] top-[8.5rem] border-0 bg-custom-rose-900 hover:bg-custom-rose-800" />
-          <CarouselNext className="text-white right-[0.45rem] top-[8.5rem] border-0 bg-custom-rose-900 hover:bg-custom-rose-800" />
+          <CarouselPrevious className="hidden text-white left-[0.1rem] top-[8.5rem] border-0 bg-custom-rose-900 hover:bg-custom-rose-800 sm:flex" />
+          <CarouselNext className="hidden text-white right-[0.45rem] top-[8.5rem] border-0 bg-custom-rose-900 hover:bg-custom-rose-800 sm:flex" />
         </Carousel>
       )}
     </div>

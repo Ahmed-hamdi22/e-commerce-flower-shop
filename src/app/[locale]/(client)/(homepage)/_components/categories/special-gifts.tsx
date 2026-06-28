@@ -10,9 +10,9 @@ export default function SpecialGifts() {
   const t = useTranslations();
 
   return (
-    <div className="grid  grid-cols-12 gap-5 mt-5">
+    <div className="grid grid-cols-1 gap-5 mt-5 md:grid-cols-12">
       {/* First gift box */}
-      <div className="col-span-4 relative rounded-[.9rem] h-[272px] overflow-hidden flex flex-col justify-center items-end  rtl:items-start">
+      <div className="relative rounded-[.9rem] h-[220px] overflow-hidden flex flex-col justify-center items-end rtl:items-start sm:h-[272px] md:col-span-4">
         {/* Gift box image */}
         <Image className="flex" src="/img3.png" alt="" fill sizes="400px" />
 
@@ -38,7 +38,7 @@ export default function SpecialGifts() {
       </div>
 
       {/* Second gift box */}
-      <div className="col-span-4 relative rounded-[.9rem] h-[272px] overflow-hidden  flex flex-col justify-center items-end rtl:items-start">
+      <div className="relative rounded-[.9rem] h-[220px] overflow-hidden flex flex-col justify-center items-end rtl:items-start sm:h-[272px] md:col-span-4">
         {/* Gift box image */}
         <Image className="object-cover w-full" src="/img2.png" alt="" fill sizes="400px" />
 
@@ -64,7 +64,7 @@ export default function SpecialGifts() {
       </div>
 
       {/* Third gift box */}
-      <div className="col-span-4 relative rounded-[.9rem] h-[272px] overflow-hidden  flex flex-col justify-center items-end rtl:items-start">
+      <div className="relative rounded-[.9rem] h-[220px] overflow-hidden flex flex-col justify-center items-end rtl:items-start sm:h-[272px] md:col-span-4">
         {/* Gift box image */}
         <Image className="object-cover w-full" src="/img1.png" alt="" fill sizes="400px" />
 
