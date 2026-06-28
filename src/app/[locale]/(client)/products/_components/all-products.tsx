@@ -15,14 +15,14 @@ export default async function Products({ searchParams }: { searchParams: SearchP
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 grid-rows-[min-content]">
+    <div className="grid grid-cols-1 gap-4 grid-rows-[min-content] min-[375px]:grid-cols-2 sm:gap-5 xl:grid-cols-3">
       {payload.products
         .filter((product) => product.title && product.imgCover && product.price !== undefined)
         .map((product) => (
-          <ProductCard width="400" height="400" key={product._id} product={product} />
+          <ProductCard key={product._id} product={product} />
         ))}
 
-      <div className="col-span-3">
+      <div className="min-w-0 min-[375px]:col-span-2 xl:col-span-3">
         <PagePagination metadata={payload.metadata} />
       </div>
     </div>

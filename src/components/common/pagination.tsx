@@ -77,8 +77,8 @@ export default function PagePagination({ metadata }: PagePaginationProps) {
   };
 
   return (
-    <Pagination className="flex items-center justify-center">
-      <PaginationContent>
+    <Pagination className="flex items-center justify-start overflow-x-auto pb-2 sm:justify-center sm:overflow-visible sm:pb-0">
+      <PaginationContent className="min-w-max">
         {/* Go to First Page */}
         <PaginationItem>
           <button

@@ -57,7 +57,7 @@ export default function CategoryFilter({ categories }: CategoryFilterProps) {
   };
 
   return (
-    <Card className="w-[302px] p-6 rounded-[20px] bg-white shadow-[0_0_10px_0_rgba(0,0,0,0.05)] space-y-4 rtl:space-x-reverse py-8">
+    <Card className="w-full p-5 rounded-[20px] bg-white shadow-[0_0_10px_0_rgba(0,0,0,0.05)] space-y-4 rtl:space-x-reverse py-6 sm:p-6 sm:py-8 lg:w-[302px]">
       {/*Title */}
       <h3 className="font-bold text-blue-gray-900 leading-[44px] border-b pb-3 last:border-b-0 capitalize ">
         {t("category")}

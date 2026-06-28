@@ -31,9 +31,9 @@ export default function ProductCard({ product, width, height }: ProductCardProps
   const { mutate: addtoCart, isPending } = useAddToCart(product._id || "fallback-id");
 
   return (
-    <Card className="rounded-[20px] flex-col flex " key={product.id}>
+    <Card className="h-full overflow-hidden rounded-[20px] flex-col flex" key={product.id}>
       {/* Card header */}
-      <CardHeader className="group min-h-60 bg-main-color rounded-[20px] flex justify-center items-center mb-4 overflow-hidden relative flex-grow">
+      <CardHeader className="group min-h-40 bg-main-color rounded-[20px] flex justify-center items-center mb-3 overflow-hidden relative flex-grow sm:min-h-60 sm:mb-4">
         {/* Image overlay */}
         <div className="absolute inset-0 bg-custom-rose-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[20px]"></div>
 
@@ -45,7 +45,8 @@ export default function ProductCard({ product, width, height }: ProductCardProps
             ? { width: Number(width), height: Number(height) }
             : {
                 fill: true,
-                sizes: "(max-width: 640px) 100px, (max-width: 1024px) 150px, 222px",
+                sizes:
+                  "(max-width: 374px) 100vw, (max-width: 640px) 50vw, (max-width: 1024px) 150px, 222px",
               })}
           className="object-cover group-hover:opacity-70 transition-opacity duration-300"
         />
@@ -68,17 +69,17 @@ export default function ProductCard({ product, width, height }: ProductCardProps
       </CardHeader>
 
       {/* Product details */}
-      <CardContent className="px-4">
-        <div className="flex justify-between items-center">
+      <CardContent className="px-3 pb-4 sm:px-4">
+        <div className="flex items-center justify-between gap-2">
           {/* Product information */}
-          <div className="flex flex-col justify-start gap-[9px]">
+          <div className="min-w-0 flex flex-col justify-start gap-1.5 sm:gap-[9px]">
             {/* Product title */}
-            <h6 className="text-start text-[17px] font-semibold text-blue-gray-900 font-inter line-clamp-1">
+            <h6 className="text-start text-sm font-semibold text-blue-gray-900 font-inter line-clamp-1 sm:text-[17px]">
               {product.title}
             </h6>
 
             {/* Product rating */}
-            <div className="flex text-xl text-rate-color">
+            <div className="flex text-sm text-rate-color sm:text-xl">
               {[...Array(5)].map((_, index) => (
                 <span key={index}>
                   {index < (product?.rating || 4) ? <FaStar /> : <FaRegStar />}
@@ -87,13 +88,13 @@ export default function ProductCard({ product, width, height }: ProductCardProps
             </div>
 
             {/* Product price */}
-            <p className="text-base text-flamingo font-medium text-start font-roboto">
+            <p className="text-sm text-flamingo font-medium text-start font-roboto sm:text-base">
               {format.number(product.priceAfterDiscount ?? product.price ?? 0, {
                 style: "currency",
                 currency: "USD",
               })}
               {product.priceAfterDiscount && (
-                <span className="line-through text-blue-gray-50">
+                <span className="ms-1 line-through text-blue-gray-50">
                   {format.number(product.price ?? 0, {
                     style: "currency",
                     currency: "USD",
@@ -106,7 +107,7 @@ export default function ProductCard({ product, width, height }: ProductCardProps
           {/* TODO:Add to cart button */}
           {session ? (
             <Button
-              className="text-white bg-custom-purple-900 w-[42px] h-[42px] rounded-full flex justify-center items-center hover:bg-custom-purple-800"
+              className="text-white bg-custom-purple-900 w-9 h-9 shrink-0 rounded-full flex justify-center items-center hover:bg-custom-purple-800 sm:w-[42px] sm:h-[42px]"
               disabled={isPending}
               onClick={() => addtoCart(1)}
             >
@@ -115,7 +116,7 @@ export default function ProductCard({ product, width, height }: ProductCardProps
           ) : (
             <AuthDialog>
               <Button
-                className="text-white bg-custom-purple-900 w-[42px] h-[42px] rounded-full flex justify-center items-center hover:bg-custom-purple-800"
+                className="text-white bg-custom-purple-900 w-9 h-9 shrink-0 rounded-full flex justify-center items-center hover:bg-custom-purple-800 sm:w-[42px] sm:h-[42px]"
                 disabled={isPending}
                 onClick={() => addtoCart(1)}
               >

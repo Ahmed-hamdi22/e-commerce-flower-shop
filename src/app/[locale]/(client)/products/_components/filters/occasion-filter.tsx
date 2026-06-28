@@ -57,7 +57,7 @@ export default function OccasionFilter({ occasions }: OccasionFilterProps) {
   };
 
   return (
-    <Card className="w-[302px] p-6 rounded-[20px] bg-white shadow-[0_0_10px_0_rgba(0,0,0,0.05)] space-y-4 rtl:space-x-reverse">
+    <Card className="w-full p-5 rounded-[20px] bg-white shadow-[0_0_10px_0_rgba(0,0,0,0.05)] space-y-4 rtl:space-x-reverse sm:p-6 lg:w-[302px]">
       {/* Title */}
       <h3 className="capitalize text-blue-gray-600 leading-5 font-semibold font-inter flex-1 rtl:ps-2">
         {t("occasion")}

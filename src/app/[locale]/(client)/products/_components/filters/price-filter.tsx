@@ -65,7 +65,7 @@ export default function PriceFilter() {
   };
 
   return (
-    <Card className="w-[302px] p-6 rounded-[20px] bg-white shadow-[0_0_10px_0_rgba(0,0,0,0.05)] space-y-4 rtl:space-x-reverse">
+    <Card className="w-full p-5 rounded-[20px] bg-white shadow-[0_0_10px_0_rgba(0,0,0,0.05)] space-y-4 rtl:space-x-reverse sm:p-6 lg:w-[302px]">
       {/* Title */}
       <h3 className="font-bold text-blue-gray-900 leading-[44px] border-b pb-3 last:border-b-0  cupitalize rtl:text-right">
         {t("price-rating")}
@@ -89,7 +89,7 @@ export default function PriceFilter() {
       </div>
       {/* Slider */}
       <Slider
-        className="w-[254px]  h-[16px] text-custom-rose-900"
+        className="w-full h-[16px] text-custom-rose-900 lg:w-[254px]"
         min={0}
         max={maxPrice}
         step={10}

@@ -6,24 +6,26 @@ import { FilterStars } from "./_components/filters/filter-stars";
 import PriceFilter from "./_components/filters/price-filter";
 import CategoryFilterWrapper from "./_components/category-filter-wrapper";
 import OccasionFilterWrapper from "./_components/filters/occasion-flter-wrapper";
+import ProductsLayoutShell from "./_components/products-layout-shell";
 
 export default async function AllCategoriesPage({ searchParams }: RouteProps) {
   return (
-    <div className="p-10 grid grid-cols-1 gap-5 md:grid-cols-[1fr_4fr] container">
-      
-      {/* Status Filter */}
-      <div>
-        <CategoryFilterWrapper />
-        <OccasionFilterWrapper />
-        <PriceFilter />
-        <FilterStatus />
-        <FilterStars />
-      </div>
-
+    <ProductsLayoutShell
+      filters={
+        <>
+          {/* Status Filter */}
+          <CategoryFilterWrapper />
+          <OccasionFilterWrapper />
+          <PriceFilter />
+          <FilterStatus />
+          <FilterStars />
+        </>
+      }
+    >
       {/* Products */}
       <Suspense fallback={<AllProductsSkeleton />}>
         <Products searchParams={searchParams} />
       </Suspense>
-    </div>
+    </ProductsLayoutShell>
   );
 }
