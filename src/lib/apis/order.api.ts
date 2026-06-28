@@ -3,35 +3,32 @@
 import { cookies } from "next/headers";
 import { decode } from "next-auth/jwt";
 import { AUTH_COOKIE } from "@/lib/constants/auth.constant";
+import getToken from "@/lib/utils/get-token";
 
 // Fetch cart order
 export async function fetchCartOrders() {
-  const tokenCookie = cookies().get(AUTH_COOKIE)?.value;
+  const token = await getToken();
 
-  if (!tokenCookie) {
-    throw new Error("Authentication required");
+  if (!token || !process.env.API) return null;
+
+  try {
+    const response = await fetch(process.env.API + "/cart", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      cache: "no-store",
+    });
+
+    const payload: APIResponse<{ cart: Cart }> = await response.json();
+    if (!response.ok || "error" in payload) {
+      return null;
+    }
+    return payload;
+  } catch {
+    return null;
   }
-
-  const token = await decode({ token: tokenCookie, secret: process.env.NEXTAUTH_SECRET! });
-
-  if (!token?.token) {
-    throw new Error("Invalid authentication token");
-  }
-
-  const response = await fetch(process.env.API + "/cart", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token.token}`,
-    },
-    cache: "no-store",
-  });
-
-  const payload: APIResponse<{ cart: Cart }> = await response.json();
-  if ("error" in payload) {
-    throw new Error(payload.error);
-  }
-  return payload;
 }
 
 // fetch latest order

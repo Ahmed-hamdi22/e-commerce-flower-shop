@@ -11,7 +11,7 @@ export default async function PaymentWrapper() {
   const response = await fetchCartOrders();
 
   // Redirect if not logged in or cart is empty
-  if (!session?.user || !response.cart || response.cart.cartItems.length) {
+  if (!session?.user || !response?.cart || response.cart.cartItems.length) {
     redirect("/");
   }
 
