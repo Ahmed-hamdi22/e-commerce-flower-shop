@@ -33,17 +33,17 @@ function getPopularProducts(payload: unknown): Product[] {
 
 async function fetchProducts(searchParams: string) {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API}/filtered-products?${searchParams}`,
-    );
+    const response = await fetch(`${process.env.API}/products?${searchParams}`, {
+      cache: "no-store",
+    });
     const payload: APIResponse<PaginatedResponse<{ products: Product[] }>> = await response.json();
 
-    if ("error" in payload) {
-      throw new Error(payload.error);
+    if (!response.ok || "error" in payload) {
+      throw new Error("error" in payload ? payload.error : "Failed to fetch popular products");
     }
     return payload;
   } catch (error) {
-    console.error("Error fetching categories: ", error);
+    console.error("Error fetching popular products: ", error);
     return null;
   }
 }

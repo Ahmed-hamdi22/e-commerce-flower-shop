@@ -1,9 +1,6 @@
 "use server";
 
-import { cookies } from "next/headers";
 import { JSON_HEADER } from "../constants/api.constant";
-import { AUTH_COOKIE } from "../constants/auth.constant";
-import { decode } from "next-auth/jwt";
 import { getTranslations } from "next-intl/server";
 import getToken from "../utils/get-token";
 import { revalidateTag } from "next/cache";
@@ -13,18 +10,16 @@ export async function addToCartAction(fields: CartFields) {
   // Translation
   const t = await getTranslations();
 
-  // Get toke from cookies and decode it
-  const tokenCookies = cookies().get(AUTH_COOKIE)?.value;
-  const token = await decode({ token: tokenCookies, secret: process.env.NEXTAUTH_SECRET! });
+  const token = await getToken();
 
   // Throw error if the user did not login
-  if (!tokenCookies) throw new Error(t("please-login-first"));
+  if (!token) throw new Error(t("please-login-first"));
 
   const response = await fetch(`${process.env.API}/cart`, {
     method: "POST",
     headers: {
       ...JSON_HEADER,
-      Authorization: `Bearer ${token?.token}`,
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(fields),
   });

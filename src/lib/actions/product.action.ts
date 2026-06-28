@@ -1,27 +1,16 @@
 "use server";
 
-import { cookies } from "next/headers";
-import { decode } from "next-auth/jwt";
-import { AUTH_COOKIE } from "../constants/auth.constant";
 import { getTranslations } from "next-intl/server";
+import getToken from "../utils/get-token";
 
 // Add to cart function
 export const addProductToCart = async (productid: string, quantity: number) => {
   // Translations
   const t = await getTranslations();
 
-  // Retrieve the token from cookies
-  const tokenCookies = cookies().get(AUTH_COOKIE)?.value;
+  const token = await getToken();
 
-  // Handling when happen any fail in decoded
-  let token;
-  try {
-    token = await decode({ token: tokenCookies, secret: process.env.NEXTAUTH_SECRET! });
-
-    if (!token) {
-      return { success: false, message: t("invalid-or-expired-token") };
-    }
-  } catch (error) {
+  if (!token) {
     return { success: false, message: t("invalid-or-expired-token") };
   }
 
@@ -31,7 +20,7 @@ export const addProductToCart = async (productid: string, quantity: number) => {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json",
-        Authorization: ` Bearer ${token?.token}`,
+        Authorization: `Bearer ${token}`,
       }),
 
       body: JSON.stringify({
