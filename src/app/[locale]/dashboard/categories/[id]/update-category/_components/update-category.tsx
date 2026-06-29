@@ -22,7 +22,7 @@ import { UseUpdateCategory } from "@/hooks/dashboard/use-update-category";
 
 type TypeParam = {
   params: { id: string };
-  category: Category;
+  category: Category | null;
 };
 
 export default function UpdateCategoryPage({ params, category }: TypeParam) {

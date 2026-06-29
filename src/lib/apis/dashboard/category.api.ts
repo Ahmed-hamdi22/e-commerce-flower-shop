@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { decode } from "next-auth/jwt";
 import { AUTH_COOKIE } from "@/lib/constants/auth.constant";
 import { revalidatePath } from "next/cache";
+import getToken from "@/lib/utils/get-token";
 
 async function getAuthenticatedToken() {
   const tokenCookie = cookies().get(AUTH_COOKIE)?.value;
@@ -67,9 +68,12 @@ export async function updatecategory(id: string, formData: FormData) {
 
 // Get category by id
 
-export async function getCategoryById(id: string): Promise<Category> {
-  const token = await getAuthenticatedToken();
+export async function getCategoryById(id: string): Promise<Category | null> {
+  const token = await getToken();
 
+  if (!token || !process.env.API) return null;
+
+  try {
   const res = await fetch(`${process.env.API}/categories/${id}`, {
     method: "GET",
     headers: {
@@ -79,9 +83,10 @@ export async function getCategoryById(id: string): Promise<Category> {
   });
   const payload: APIResponse<{ category: Category }> = await res.json();
 
-  if ("error" in payload) {
-    throw new Error(payload.error);
-  }
+    if (!res.ok || "error" in payload) return null;
 
-  return payload.category;
+    return payload.category || null;
+  } catch {
+    return null;
+  }
 }

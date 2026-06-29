@@ -1,10 +1,19 @@
 import Sidebar from "@/components/layout/dashboard/sidebar";
+import getToken from "@/lib/utils/get-token";
+import { redirect } from "next/navigation";
 
 type LayoutProps = {
   children: React.ReactNode;
+  params: { locale: string };
 };
 
-export default function DashboardLayout({ children }: LayoutProps) {
+export default async function DashboardLayout({ children, params }: LayoutProps) {
+  const token = await getToken();
+
+  if (!token) {
+    redirect(`/${params.locale}`);
+  }
+
   return (
     <div className="min-h-screen overflow-x-hidden lg:flex">
       {/* Sidebar */}

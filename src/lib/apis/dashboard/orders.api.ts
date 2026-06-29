@@ -1,29 +1,34 @@
-"use server"
+"use server";
 
-import { AUTH_COOKIE } from "@/lib/constants/auth.constant";
-import { decode } from "next-auth/jwt";
-import { cookies } from "next/headers";
+import getToken from "@/lib/utils/get-token";
 
 export async function getAllOrders() {
-  const tokenCookies = cookies().get(AUTH_COOKIE)?.value;
-  const token = await decode({ token: tokenCookies, secret: process.env.NEXTAUTH_SECRET! });
+  const token = await getToken();
+
+  if (!token || !process.env.API) {
+    return { statistics: { ordersByStatus: [], dailyRevenue: [], monthlyRevenue: [] } };
+  }
 
   const apiUrl = `${process.env.API}/statistics/orders`;
 
+  try {
   const response = await fetch(apiUrl, {
     method: "GET",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token?.token}`,
+      Authorization: `Bearer ${token}`,
     },
     cache: "no-store",
   });
 
   const payload: APIResponse<OrderStatisticsResponse> = await response.json();
-  
-  if ("error" in payload) {
-    throw new Error(payload.error);
+
+    if (!response.ok || "error" in payload) {
+      return { statistics: { ordersByStatus: [], dailyRevenue: [], monthlyRevenue: [] } };
   }
   return payload;
+  } catch {
+    return { statistics: { ordersByStatus: [], dailyRevenue: [], monthlyRevenue: [] } };
+  }
 }

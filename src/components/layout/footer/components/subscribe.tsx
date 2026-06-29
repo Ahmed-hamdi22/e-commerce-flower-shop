@@ -37,21 +37,21 @@ export default function Subscribe() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center">
-      <div className="flex relative text-sm font-semibold text-blue-gray-500 ">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex w-full max-w-xl flex-col items-center">
+      <div className="flex w-full flex-col gap-3 text-sm font-semibold text-blue-gray-500 sm:relative sm:block">
         {/* Input */}
         <Input
           id="email"
           type="email"
           placeholder={t("enter-your-email")}
-          className="ltr:placeholder:text-left rtl:placeholder:text-right text-left rtl:text-right  "
+          className="h-12 w-full rounded-[30px] bg-white pe-4 ps-4 text-left shadow-sm ltr:placeholder:text-left rtl:text-right rtl:placeholder:text-right sm:pe-36"
           {...register("email")}
         />
 
         {/* Subscribe */}
         <Button
           type="submit"
-          className="bg-custom-rose-900  rounded-[30px] absolute ltr:right-1 rtl:left-1   top-1/2  w-[131px] h-[90%] -translate-y-1/2 text-base font-medium "
+          className="flex h-12 w-full items-center justify-center rounded-[30px] bg-custom-rose-900 text-base font-medium sm:absolute sm:top-1/2 sm:h-[90%] sm:w-[131px] sm:-translate-y-1/2 ltr:sm:right-1 rtl:sm:left-1"
         >
           {/* Text */}
           {t("Subscribe")}

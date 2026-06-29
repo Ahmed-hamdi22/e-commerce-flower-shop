@@ -1,29 +1,50 @@
-"use server"
+"use server";
 
-import { AUTH_COOKIE } from "@/lib/constants/auth.constant";
-import { decode } from "next-auth/jwt";
-import { cookies } from "next/headers";
+import getToken from "@/lib/utils/get-token";
+
+const emptyStatistics = {
+  overall: {
+    totalProducts: 0,
+    totalOrders: 0,
+    totalCategories: 0,
+    totalRevenue: 0,
+  },
+  products: {
+    productsByCategory: [],
+    topSellingProducts: [],
+    lowStockProducts: [],
+  },
+  orders: {
+    ordersByStatus: [],
+    dailyRevenue: [],
+    monthlyRevenue: [],
+  },
+  categories: [],
+};
 
 export async function getAllStatistics() {
-  const tokenCookies = cookies().get(AUTH_COOKIE)?.value;
-  const token = await decode({ token: tokenCookies, secret: process.env.NEXTAUTH_SECRET! });
+  const token = await getToken();
+
+  if (!token || !process.env.API) return emptyStatistics;
 
   const apiUrl = `${process.env.API}/statistics`;
 
+  try {
   const response = await fetch(apiUrl, {
     method: "GET",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token?.token}`,
+      Authorization: `Bearer ${token}`,
     },
     cache: "no-store",
   });
   const payload = await response.json();
 
-  if ("error" in payload) {
-    throw new Error(payload.error);
-  }
+    if (!response.ok || "error" in payload) return emptyStatistics;
 
-  return payload.statistics;
+    return payload.statistics || emptyStatistics;
+  } catch {
+    return emptyStatistics;
+  }
 }
