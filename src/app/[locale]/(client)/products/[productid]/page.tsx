@@ -26,7 +26,7 @@ export default async function ProductPage({ params }: TProps) {
 
   return (
     <div className="flex flex-col">
-      <div className="container m-auto flex gap-[40px] py-20">
+      <div className="container m-auto flex flex-col gap-8 px-4 py-10 sm:px-6 lg:flex-row lg:gap-[40px] lg:px-0 lg:py-20">
         {/* Product carousel */}
         <ProductCarousel product={data?.product || []} />
 
@@ -35,7 +35,7 @@ export default async function ProductPage({ params }: TProps) {
       </div>
 
       {/* Related items */}
-      <div className="container m-auto flex gap-[40px] py-20">
+      <div className="container m-auto flex gap-[40px] px-4 py-10 sm:px-6 lg:px-0 lg:py-20">
         <RelatedItems category={catogeryid} productid={productid} />
       </div>
     </div>

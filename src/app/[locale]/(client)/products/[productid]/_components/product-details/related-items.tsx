@@ -20,12 +20,12 @@ export default async function RelatedItems({ category, productid, width, height 
   const products = await fetchProductsByCategory(category);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex w-full min-w-0 flex-col">
       {/* Items details */}
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-wrap justify-between items-center gap-3 mb-6">
         <div className="relative">
           {/* Section title */}
-          <h3 className="text-blue-gray-900 text-[25px] font-bold z-10 font-inter">
+          <h3 className="text-blue-gray-900 text-2xl font-bold z-10 font-inter sm:text-[25px]">
             {t("related-items")}
           </h3>
 
@@ -50,10 +50,10 @@ export default async function RelatedItems({ category, productid, width, height 
       </div>
 
       {/* Display products */}
-      <div className="grid grid-cols-4 gap-6 justify-start">
+      <div className="grid grid-cols-1 gap-5 justify-start min-[375px]:grid-cols-2 lg:grid-cols-4 lg:gap-6">
         {/* Show a "Coming Soon" message if no products are available */}
         {products.length === 0 ? (
-          <div className="col-span-4 min-h-80 flex items-center justify-center text-center text-xl font-semibold text-blue-gray-900">
+          <div className="min-h-80 flex items-center justify-center text-center text-xl font-semibold text-blue-gray-900 min-[375px]:col-span-2 lg:col-span-4">
             {t("coming-soon")}
           </div>
         ) : (

@@ -21,15 +21,15 @@ export default async function Content({ product }: Productprops) {
   const format = await getFormatter();
 
   return (
-    <div className="flex flex-col w-[550px]">
+    <div className="flex w-full min-w-0 flex-col lg:w-[550px]">
       <div className="flex flex-col">
         {/* Product title */}
-        <h2 className="text-[25px] font-semibold">{product.title}</h2>
+        <h2 className="text-2xl font-semibold leading-tight sm:text-[25px]">{product.title}</h2>
 
         {/* Details */}
-        <div className="flex gap-[5px] items-center mt-4">
+        <div className="flex flex-wrap gap-x-2 gap-y-1 items-center mt-4">
           {/* Product price */}
-          <p className="text-gray-600 line-through text-[18px] font-medium">
+          <p className="text-gray-600 line-through text-base font-medium sm:text-[18px]">
             {format.number(product.price ?? 0, {
               currency: "USD",
               style: "currency",
@@ -38,7 +38,7 @@ export default async function Content({ product }: Productprops) {
 
           {/* Price after discount */}
           {product.priceAfterDiscount !== undefined && (
-            <p className="text-custom-rose-900 text-[23px] font-medium">
+            <p className="text-custom-rose-900 text-xl font-medium sm:text-[23px]">
               {format.number(product.priceAfterDiscount ?? 0, {
                 currency: "USD",
                 style: "currency",
@@ -59,7 +59,7 @@ export default async function Content({ product }: Productprops) {
 
         {/* Product description */}
         {product.description && (
-          <p className="text-[#757575] text-[16px] font-normal leading-[28.8px] mt-5">
+          <p className="text-[#757575] text-[15px] font-normal leading-7 mt-5 sm:text-[16px] sm:leading-[28.8px]">
             {product.description}
           </p>
         )}

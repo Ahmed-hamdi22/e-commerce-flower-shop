@@ -35,14 +35,14 @@ export default function ProductCarousel({ product }: ProductPropes) {
   }, [api, thumbsApi]);
 
   return (
-    <div className="w-[478.66px] flex flex-col">
+    <div className="w-full min-w-0 flex flex-col lg:w-[478.66px] lg:shrink-0">
       <div className="mb-2">
         {/* Carousel */}
         <Carousel setApi={setApi}>
           <CarouselContent>
             {images.map((img: string, index: number) => (
               <CarouselItem key={index}>
-                <div className="relative w-full h-[478.66px]">
+                <div className="relative w-full aspect-square lg:h-[478.66px]">
                   {/* Image */}
                   {img && (
                     <Image
@@ -72,7 +72,7 @@ export default function ProductCarousel({ product }: ProductPropes) {
         >
           <CarouselContent>
             {images.map((img: string, index: number) => (
-              <CarouselItem key={index} className="basis-1/4 ">
+              <CarouselItem key={index} className="basis-1/4">
                 {/* Button */}
                 <button
                   onClick={() => {
@@ -99,8 +99,8 @@ export default function ProductCarousel({ product }: ProductPropes) {
             ))}
           </CarouselContent>
           {/* Navigation buttons */}
-          <CarouselPrevious className="absolute right-auto rtl:left-[-2.5rem] ms-2 top-1/2 bg-custom-rose-900 text-white" />
-          <CarouselNext className="absolute me-2 top-1/2 bg-custom-rose-900 text-white" />
+          <CarouselPrevious className="absolute hidden right-auto rtl:left-[-2.5rem] ms-2 top-1/2 bg-custom-rose-900 text-white sm:flex" />
+          <CarouselNext className="absolute hidden me-2 top-1/2 bg-custom-rose-900 text-white sm:flex" />
         </Carousel>
       </div>
     </div>

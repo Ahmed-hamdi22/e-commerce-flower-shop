@@ -36,7 +36,7 @@ export default function QuantitySelector({ productid, maxQuantity }: QuantitySel
   };
 
   return (
-    <div className="flex gap-8 items-center  ">
+    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
       {/* Quantity selector ui*/}
       <div className="flex flex-col gap-[16px]">
         <p className="text-[16px] font-medium text-blue-gray-500 ">{t("quantity")}</p>
@@ -67,12 +67,12 @@ export default function QuantitySelector({ productid, maxQuantity }: QuantitySel
       </div>
 
       {/* Add to cart button */}
-      <div>
+      <div className="w-full sm:w-auto">
         {session ? (
           <Button
             disabled={isPending}
             onClick={() => addtoCart(quantity)}
-            className="w-[144px] h-[45px] mt-7 bg-custom-rose-900 text-[16px] font-medium rounded-[10px] flex items-center justify-center gap-2"
+            className="w-full h-[45px] bg-custom-rose-900 text-[16px] font-medium rounded-[10px] flex items-center justify-center gap-2 sm:mt-7 sm:w-[144px]"
           >
             <IoLockClosedOutline className="w-[14px] h-[16px]" />
             {t("add-to-cart")}
@@ -81,7 +81,7 @@ export default function QuantitySelector({ productid, maxQuantity }: QuantitySel
           <AuthDialog>
             <Button
               disabled={isPending}
-              className="w-[144px] h-[45px] mt-7 bg-custom-rose-900 text-[16px] font-medium rounded-[10px] flex items-center justify-center gap-2"
+              className="w-full h-[45px] bg-custom-rose-900 text-[16px] font-medium rounded-[10px] flex items-center justify-center gap-2 sm:mt-7 sm:w-[144px]"
             >
               <IoLockClosedOutline className="w-[14px] h-[16px]" />
               {t("add-to-cart")}
