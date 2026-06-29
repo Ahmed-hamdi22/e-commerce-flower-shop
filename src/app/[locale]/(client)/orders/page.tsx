@@ -7,7 +7,7 @@ export default async function Page() {
 
   return (
     <div className="flex flex-col">
-      <div className="container m-auto flex gap-[40px] py-20">
+      <div className="container m-auto flex gap-6 px-4 py-8 sm:px-6 lg:gap-[40px] lg:py-20">
         <Orders orders={payload?.orders || []} />
       </div>
     </div>

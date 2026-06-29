@@ -8,7 +8,7 @@ export default async function Ordersummary() {
   const order = await fetchLatestOrder();
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto px-4 py-4 sm:px-6">
       {order ? (
         <>
           <OrderMessage order={order} />

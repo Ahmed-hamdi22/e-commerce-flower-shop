@@ -37,7 +37,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
 
   if (!order) {
     return (
-      <div className="max-w-3xl mx-auto py-10 px-4">
+      <div className="mx-auto max-w-3xl py-10">
         <div className="rounded-2xl border border-custom-rose-900 bg-main-color p-6 text-center text-blue-gray-900">
           {t("you-do-not-have-an-order")}
         </div>
@@ -46,22 +46,22 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
   }
 
   return (
-    <div className="max-w-3xl mx-auto py-2 px-4">
+    <div className="mx-auto max-w-3xl py-2">
       {/* Order Card */}
-      <div key={order._id} className="border-2 border-custom-rose-900 rounded-2xl p-4 mb-6">
+      <div key={order._id} className="mb-6 rounded-2xl border-2 border-custom-rose-900 p-2 sm:p-4">
         <Card className="bg-main-color rounded-2xl shadow-sm">
-          <CardContent className="p-6">
+          <CardContent className="p-4 sm:p-6">
             {/* Order Header */}
-            <div className="flex justify-between items-start mb-4">
+            <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
               {/* Date order and Number */}
-              <div>
+              <div className="min-w-0">
                 <p className="text-sm text-blue-gray-500">
                   {formatter.dateTime(new Date(order.createdAt), {
                     dateStyle: "medium",
-                  })}
+                })}
                 </p>
                 {order.orderNumber && (
-                  <p className="text-sm text-blue-gray-500 mt-1">
+                  <p className="mt-1 break-words text-sm text-blue-gray-500">
                     {t("order-number")}: {order.orderNumber}
                   </p>
                 )}
@@ -76,34 +76,39 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
                   const itemTotal = Number(item.price) * Number(item.quantity);
 
                   return (
-                    <div key={item._id} className="flex items-start gap-4 py-3 cursor-pointer">
-                      {/* Image */}
-                      <div className="relative w-16 h-16 rounded-md overflow-hidden border border-gray-200">
-                        <Image
-                          src={item.product.imgCover || "/assets/images/coming-soon.png"}
-                          alt={item.product.title || "Product Image"}
-                          fill
-                          className="object-cover"
-                          sizes="64px"
-                        />
-                      </div>
-                      {/* Quantity */}
-                      <div className="flex-1 space-y-1">
-                        <h6 className="font-medium text-gray-900">
-                          {item.product?.title || "Unknown Product"}
-                        </h6>
-                        <p className="text-sm text-gray-500">
-                          {t("quantity")}: {item.quantity}
-                        </p>
-                        <p className="text-sm text-gray-500">
-                          {formatter.number(Number(item.price), {
-                            style: "currency",
-                            currency: "USD",
-                          })}
-                        </p>
+                    <div
+                      key={item._id}
+                      className="flex cursor-pointer flex-col gap-3 py-3 sm:flex-row sm:items-start sm:gap-4"
+                    >
+                      <div className="flex min-w-0 gap-3 sm:flex-1 sm:gap-4">
+                        {/* Image */}
+                        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-md border border-gray-200">
+                          <Image
+                            src={item.product.imgCover || "/assets/images/coming-soon.png"}
+                            alt={item.product.title || "Product Image"}
+                            fill
+                            className="object-cover"
+                            sizes="64px"
+                          />
+                        </div>
+                        {/* Quantity */}
+                        <div className="min-w-0 flex-1 space-y-1">
+                          <h6 className="line-clamp-2 font-medium text-gray-900">
+                            {item.product?.title || "Unknown Product"}
+                          </h6>
+                          <p className="text-sm text-gray-500">
+                            {t("quantity")}: {item.quantity}
+                          </p>
+                          <p className="text-sm text-gray-500">
+                            {formatter.number(Number(item.price), {
+                              style: "currency",
+                              currency: "USD",
+                            })}
+                          </p>
+                        </div>
                       </div>
                       {/* Item total */}
-                      <div className="text-right">
+                      <div className="text-left sm:text-right">
                         <span className="text-sm font-medium">
                           {formatter.number(itemTotal, {
                             style: "currency",
@@ -122,7 +127,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
               <h5 className="mb-3 text-blue-gray-900 font-bold">{t("cart-summary")}</h5>
               <div className="space-y-2 text-sm">
                 {/* Subtotal */}
-                <div className="flex justify-between">
+                <div className="flex justify-between gap-3">
                   <span className="text-blue-gray-900 font-bold">{t("subtotal")}</span>
                   <span className="text-custom-gray">
                     {formatter.number(subtotal, {
@@ -133,7 +138,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
                 </div>
 
                 {/* Discount */}
-                <div className="flex justify-between mb-2">
+                <div className="mb-2 flex justify-between gap-3">
                   <span className="text-blue-gray-900 font-bold">{t("discount")}</span>
                   <span className="text-red-600 font-semibold">
                     {discount > 0 ? "-" : ""}
@@ -145,13 +150,13 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
                 </div>
 
                 {/* Shipping */}
-                <div className="flex justify-between">
+                <div className="flex justify-between gap-3">
                   <span className="text-blue-gray-900 font-bold">{t("shipping")}</span>
                   <span className="text-custom-gray">{t("free")}</span>
                 </div>
 
                 {/* 	Total */}
-                <div className="flex justify-between pt-2 border-t border-gray-200">
+                <div className="flex justify-between gap-3 border-t border-gray-200 pt-2">
                   <span className="text-blue-gray-900 font-bold">{t("total")}</span>
                   <span className="text-custom-rose-900 font-bold">
                     {formatter.number(total, {
@@ -169,7 +174,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
       {/* Button Continue Shopping */}
       <div className="w-full">
         <Button
-          className="bg-custom-rose-900 rounded-xl flex items-center gap-2"
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-custom-rose-900 sm:w-auto"
           onClick={() => router.push("/")}
         >
           {t("back-home")}

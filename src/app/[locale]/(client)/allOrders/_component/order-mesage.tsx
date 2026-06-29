@@ -17,19 +17,21 @@ export default async function OrderMessage({ order }: { order: Order | null }) {
   const userEmail = session?.user?.email;
 
   return (
-    <div className="max-w-3xl mx-auto pt-8 px-4 rtl:space-x-reverse ">
+    <div className="mx-auto max-w-3xl pt-6 sm:pt-8 rtl:space-x-reverse">
       <Card className="border-emerald-leaf-600 mb-6 border-l-4 rounded-e-2xl bg-green-50 text-mint-green-800">
-        <CardContent className="py-6">
-          <div className="flex items-center text-emerald-l text-lg font-medium">
+        <CardContent className="px-4 py-5 sm:px-6 sm:py-6">
+          <div className="flex items-start text-base font-medium text-emerald-l sm:items-center sm:text-lg">
             {/* Icon */}
-            <CheckCircle className="me-2" />
+            <CheckCircle className="me-2 mt-0.5 shrink-0 sm:mt-0" />
 
             {/* Title */}
-            <span className="ml-2 text-blue-gray-900">{t("order-confirmation-title")}</span>
+            <span className="min-w-0 break-words text-blue-gray-900 ltr:ml-2">
+              {t("order-confirmation-title")}
+            </span>
           </div>
 
           {/* Message */}
-          <p className="text-sm mt-1 text-custom-gray">
+          <p className="mt-2 break-words text-sm text-custom-gray">
             <span>{t("order-confirmation-message")} </span> {userEmail}
           </p>
         </CardContent>
