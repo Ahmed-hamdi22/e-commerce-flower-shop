@@ -48,13 +48,13 @@ export function PaymentForm({ shippingAddress }: PaymentFormProps) {
       </AccordionTrigger>
       <AccordionContent>
         {/* Card */}
-        <Card className="p-6">
-          <div className="flex gap-4 mb-6">
+        <Card className="p-4 sm:p-6">
+          <div className="grid grid-cols-2 gap-3 mb-6 sm:flex sm:gap-4">
             <button
               type="button"
               onClick={() => setPaymentType("cash")}
               className={cn(
-                "flex flex-col items-center justify-center gap-1 border-2 rounded-[20px] p-4 w-[129px] h-[125px]",
+                "flex h-[112px] w-full flex-col items-center justify-center gap-1 border-2 rounded-[20px] p-3 sm:h-[125px] sm:w-[129px] sm:p-4",
                 paymentType === "cash"
                   ? "border-custom-rose-500 text-custom-rose-900 bg-custom-rose-50"
                   : "border-gray-300 text-gray-500 hover:border-gray-400",
@@ -68,7 +68,7 @@ export function PaymentForm({ shippingAddress }: PaymentFormProps) {
               type="button"
               onClick={() => setPaymentType("card")}
               className={cn(
-                "flex flex-col items-center justify-center gap-1 border-2 rounded-[20px] p-4 w-[129px] h-[125px]",
+                "flex h-[112px] w-full flex-col items-center justify-center gap-1 border-2 rounded-[20px] p-3 sm:h-[125px] sm:w-[129px] sm:p-4",
                 paymentType === "card"
                   ? "border-custom-rose-500 text-custom-rose-900 bg-custom-rose-50"
                   : "border-gray-300 text-gray-500 hover:border-gray-400",
@@ -81,13 +81,13 @@ export function PaymentForm({ shippingAddress }: PaymentFormProps) {
           </div>
 
           {/* Navigation buttons */}
-          <div className="flex justify-between mt-4">
-            <Button className="bg-custom-rose-900 rounded-xl" onClick={() => router.back()}>
+          <div className="flex flex-col gap-3 mt-4 sm:flex-row sm:justify-between">
+            <Button className="w-full bg-custom-rose-900 rounded-xl sm:w-auto" onClick={() => router.back()}>
               <ArrowLeft /> {t("previous")}
             </Button>
 
             <Button
-              className="bg-custom-rose-900 hover:bg-custom-rose-700 rounded-xl"
+              className="w-full bg-custom-rose-900 hover:bg-custom-rose-700 rounded-xl sm:w-auto"
               onClick={onSubmit}
             >
               {t("pay-now")} <ArrowRight />

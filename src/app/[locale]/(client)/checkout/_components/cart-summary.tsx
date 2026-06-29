@@ -21,7 +21,7 @@ export default function CartSummary({ cart }: CartType) {
   const subtotal = cart.totalPrice;
 
   return (
-    <div className="w-[304px] h-80 py-2 px-4 bg-main-color rounded-2xl shadow-sm">
+    <div className="w-full py-2 px-3 bg-main-color rounded-2xl shadow-sm sm:px-4 lg:w-[304px] lg:h-80">
       <div key={cart._id}>
         {/* Cart card */}
         <Card>
@@ -75,7 +75,7 @@ export default function CartSummary({ cart }: CartType) {
         </Card>
 
         {/* Checkout button */}
-        <Button className="bg-custom-rose-900 rounded-xl mt-4">
+        <Button className="w-full bg-custom-rose-900 rounded-xl mt-4 sm:w-auto">
           {t("checkout-now")}
           <ArrowRight />
         </Button>

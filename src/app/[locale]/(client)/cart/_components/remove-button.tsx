@@ -10,7 +10,7 @@ export default function RemoveButton({ productId }: { productId: string }) {
   return (
     <button
       onClick={() => removeCartItem({ productId })}
-      className="col-span-1 border p-2 rounded-full hover:scale-105 "
+      className="col-span-1 shrink-0 border p-2 rounded-full hover:scale-105"
       disabled={isPending}
     >
       {" "}

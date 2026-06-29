@@ -101,7 +101,7 @@ export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormPro
         {/* Billing form */}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="font-roboto">
-            <div className="grid grid-cols-3 gap-x-4 gap-y-4 mb-4">
+            <div className="grid grid-cols-1 gap-x-4 gap-y-4 mb-4 md:grid-cols-2 xl:grid-cols-3">
               {/* Street */}
               <FormField
                 name="street"
@@ -119,7 +119,7 @@ export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormPro
                         type="text"
                         placeholder={t("street")}
                         {...field}
-                        className="w-[280px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
+                        className="w-full h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)] xl:w-[280px]"
                       />
                     </FormControl>
 
@@ -146,7 +146,7 @@ export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormPro
                         placeholder={t("phone")}
                         type="text"
                         {...field}
-                        className="w-[280px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
+                        className="w-full h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)] xl:w-[280px]"
                       />
                     </FormControl>
 
@@ -173,7 +173,7 @@ export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormPro
                         placeholder={t("city")}
                         type="text"
                         {...field}
-                        className="w-[280px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
+                        className="w-full h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)] xl:w-[280px]"
                       />
                     </FormControl>
 
@@ -185,7 +185,7 @@ export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormPro
             </div>
 
             {/* Location */}
-            <div className="flex justify-between items-end">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 xl:items-end">
               {/* Latitude */}
               <FormField
                 name="lat"
@@ -204,7 +204,7 @@ export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormPro
                         type="text"
                         readOnly
                         {...field}
-                        className="w-[280px] cursor-not-allowed h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
+                        className="w-full cursor-not-allowed h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)] xl:w-[280px]"
                       />
                     </FormControl>
 
@@ -232,7 +232,7 @@ export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormPro
                         type="text"
                         readOnly
                         {...field}
-                        className="w-[280px] cursor-not-allowed h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
+                        className="w-full cursor-not-allowed h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)] xl:w-[280px]"
                       />
                     </FormControl>
 
@@ -250,12 +250,13 @@ export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormPro
                 className=" bg-custom-rose-900  
                     h-[49px]
                     rounded-[10px] 
-                    w-[280px]
+                    w-full
                     font-medium 
                     text-base
                     text-center 
                     shadow-[0px_0px_40px_5px_rgba(0, 0, 0, 0.05)]
-                    hover:bg-custom-rose-800              "
+                    hover:bg-custom-rose-800
+                    xl:w-[280px]"
               >
                 {isLoading ? t("detecting-location") : t("detect-location")}
               </Button>
@@ -268,6 +269,7 @@ export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormPro
                         bg-custom-rose-900  
                           rounded-[10px] 
                           h-[49px]
+                          w-full
                           px-5
                           py-[10px]
                           font-medium 
@@ -275,7 +277,8 @@ export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormPro
                           text-center 
                           shadow-[0px_0px_40px_5px_rgba(0, 0, 0, 0.05)]
                           hover:bg-custom-rose-800   
-                          capitalize           
+                          capitalize
+                          sm:w-auto
                           "
               >
                 {t("next-step")}

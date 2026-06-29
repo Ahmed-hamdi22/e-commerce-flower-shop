@@ -36,7 +36,7 @@ export default function CheckoutContent({ cart }: { cart: Cart }) {
   };
 
   return (
-    <div className="container grid grid-cols-2 lg:grid-cols-3 gap-8 my-10 px-4">
+    <div className="container grid grid-cols-1 gap-8 my-8 px-4 lg:grid-cols-3 lg:my-10">
       <div className="lg:col-span-2 flex flex-col space-y-8">
         <Accordion
           type="single"
@@ -52,13 +52,14 @@ export default function CheckoutContent({ cart }: { cart: Cart }) {
           <PaymentForm shippingAddress={shippingAddress} />
         </Accordion>
         {/* Buttons */}
-        <div className="flex justify-between align-middle mt-10">
+        <div className="flex justify-between align-middle mt-6 lg:mt-10">
           <Button
             type="submit"
             className="
         bg-custom-rose-900  
           rounded-[10px] 
           h-[49px]
+          w-full
           px-5
           py-[10px]
           font-medium 
@@ -66,7 +67,8 @@ export default function CheckoutContent({ cart }: { cart: Cart }) {
           text-center 
           shadow-[0px_0px_40px_5px_rgba(0, 0, 0, 0.05)]
           hover:bg-custom-rose-800   
-          capitalize           
+          capitalize
+          sm:w-auto
           "
           >
             {locale === "ar" ? <FaArrowRight /> : <FaArrowLeft />}
@@ -77,7 +79,7 @@ export default function CheckoutContent({ cart }: { cart: Cart }) {
 
       {/*  Summary cat wrapper  */}
 
-      <div className="">
+      <div className="min-w-0">
         <SummaryWrapper cart={cart} />
       </div>
     </div>

@@ -7,9 +7,9 @@ export default function CartSummary({ cart }: { cart: Cart }) {
   const t = useTranslations();
 
   return (
-    <div className="justify-items-center h-fit">
+    <div className="h-fit w-full justify-items-center lg:w-auto">
       {/* Cart Summary */}
-      <div className=" h-[415px] w-[300px] rounded-[20px] flex flex-col justify-between bg-custom-rose-25 p-10 text-custom-blue-900 ">
+      <div className="min-h-[360px] w-full rounded-[20px] flex flex-col justify-between bg-custom-rose-25 p-5 text-custom-blue-900 sm:p-8 lg:h-[415px] lg:w-[300px] lg:p-10">
         <h3 className="text-xl font-semibold">{t("cart-summary")}</h3>
         <div className=" flex flex-col gap-2 mb-3 ">
           {/* Subtotal */}
@@ -43,10 +43,10 @@ export default function CartSummary({ cart }: { cart: Cart }) {
           <p className="font-bold text-custom-rose-900 ">${cart?.totalPrice}</p>
         </div>
         {/* Checkout Button */}
-        <div className=" flex justify-end">
+        <div className="flex justify-end">
           <Link
             href="/checkout"
-            className="w-[165px] h-[50px] text-white text-base rounded-lg font-medium bg-custom-rose-900 text-center flex justify-center items-center gap-1 "
+            className="w-full h-[50px] text-white text-base rounded-lg font-medium bg-custom-rose-900 text-center flex justify-center items-center gap-1 sm:w-[165px]"
           >
             {t("checkout-now")}
             <ArrowBigRight />

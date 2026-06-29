@@ -6,6 +6,7 @@ import EmptyCart from "./_components/empty-cart";
 import { getCart } from "@/app/api/get-cart";
 import CardItemComponent from "./_components/card-item-component";
 import CartSummary from "./_components/cart-summary";
+import CartItemMobileCard from "./_components/cart-item-mobile-card";
 
 export default async function Cart() {
   // Translation
@@ -17,10 +18,18 @@ export default async function Cart() {
   if (!cart?.cartItems.length) return <EmptyCart />;
 
   return (
-    <section className="container flex justify-between gap-3 my-10  ">
-      <div className="flex flex-col flex-1 overflow-x-auto gap-3 ">
+    <section className="container flex flex-col justify-between gap-6 px-4 my-8 sm:px-6 lg:flex-row lg:gap-3 lg:px-0 lg:my-10">
+      <div className="flex min-w-0 flex-col flex-1 gap-4 lg:gap-3">
+        <div className="flex flex-col gap-3 lg:hidden">
+          {cart?.cartItems.map(
+            (item: { product: Product; price: number; quantity: number; _id: string }) => (
+              <CartItemMobileCard key={item.product._id} item={item} />
+            ),
+          )}
+        </div>
+
         {/* Table */}
-        <table className=" min-w-[55rem] text-center ">
+        <table className="hidden min-w-[55rem] text-center lg:table">
           {/* Header */}
           <thead>
             <tr className="  uppercase   font-semibold space-x-2 ">
@@ -54,10 +63,10 @@ export default async function Cart() {
           </tbody>
         </table>
         {/* Button */}
-        <div className=" flex justify-center">
+        <div className="flex justify-center">
           <Link
             href="/all-products"
-            className="w-[200px] h-[50px] text-white text-base rounded-lg font-medium bg-custom-rose-900 text-center flex justify-center items-center gap-1 "
+            className="w-full h-[50px] text-white text-base rounded-lg font-medium bg-custom-rose-900 text-center flex justify-center items-center gap-1 sm:w-[200px]"
           >
             <ArrowLeft size={20} className="rtl:-scale-x-100" />
             {t("continue-shopping")}

@@ -14,10 +14,10 @@ export default function QuantityComponent({
   const { isPending: isPendingQuantity, updateQuantity } = useUpdateQuantity();
 
   return (
-    <div className="text-custom-rose-900  space-x-4 ">
+    <div className="flex items-center gap-3 text-custom-rose-900">
       <button
         onClick={() => updateQuantity({ productId, quantity: quantity - 1 })}
-        className=" p-2 rounded-full hover:scale-105  bg-custom-rose-25  "
+        className="p-2 rounded-full hover:scale-105 bg-custom-rose-25"
         disabled={isPendingQuantity || quantity <= 1}
       >
         {" "}
@@ -26,7 +26,7 @@ export default function QuantityComponent({
       <span>{quantity}</span>
       <button
         onClick={() => updateQuantity({ productId, quantity: quantity + 1 })}
-        className=" p-2 rounded-full hover:scale-105 bg-custom-rose-25 "
+        className="p-2 rounded-full hover:scale-105 bg-custom-rose-25"
         disabled={isPendingQuantity}
       >
         <Plus size={15} />
