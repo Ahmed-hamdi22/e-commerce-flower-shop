@@ -13,7 +13,7 @@ export default function LowStockProducts({ lowStockProducts }: LowStockProductPr
   const t = useTranslations();
 
   return (
-    <div className="p-4 w-full bg-white rounded-xl">
+    <div className="w-full rounded-xl bg-white p-4">
       {/* Text */}
       <h2 className="text-xl font-bold mb-4 text-black">{t("low-stock-products")}</h2>
 
@@ -24,7 +24,7 @@ export default function LowStockProducts({ lowStockProducts }: LowStockProductPr
             {lowStockProducts.map((product) => (
               <TableRow key={product._id}>
                 {/* Product title */}
-                <TableCell className="text-black">{product.title}</TableCell>
+                <TableCell className="min-w-0 break-words text-black">{product.title}</TableCell>
 
                 {/* Product quantity */}
                 <TableCell

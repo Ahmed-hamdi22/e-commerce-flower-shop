@@ -83,7 +83,7 @@ export default function UpdateCategoryPage({ params, category }: TypeParam) {
                       placeholder="Flowers"
                       {...field}
                       type="text"
-                      className="w-4/5 border-blue-gray-100 border-2 rounded-lg"
+                      className="w-full rounded-lg border-2 border-blue-gray-100 lg:w-4/5"
                     />
                   </FormControl>
 
@@ -94,7 +94,7 @@ export default function UpdateCategoryPage({ params, category }: TypeParam) {
             />
 
             {/* Trigger to open gallery dialog */}
-            <div className="flex justify-end w-4/5">
+            <div className="flex w-full justify-end lg:w-4/5">
               <div className="text-stats-orders-primary flex items-center gap-2 font-normal text-sm  border-2 border-blue-gray-100 rounded-lg p-2 ">
                 <Image className="w-4 h-4" />
                 <button
@@ -118,7 +118,7 @@ export default function UpdateCategoryPage({ params, category }: TypeParam) {
             <Button
               disabled={!form.formState.isValid}
               type="submit"
-              className="bg-custom-rose-900 w-4/5 text-white h-10 rounded-lg mt-16 capitalize font-semibold text-sm"
+              className="mt-10 h-10 w-full rounded-lg bg-custom-rose-900 text-sm font-semibold capitalize text-white lg:mt-16 lg:w-4/5"
             >
               {isLoading ? <Loader className="text-center" /> : t("update-cat")}
             </Button>

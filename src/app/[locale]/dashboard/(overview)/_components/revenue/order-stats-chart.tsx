@@ -34,8 +34,8 @@ export function OrderStatusChart({
   }, {} as ChartConfig);
 
   return (
-    <Card className="grid grid-cols-1 w-[276px] h-[381px] bg-white rounded-lg p-2">
-      <CardHeader className="items-center pb-0 text-2xl">
+    <Card className="grid h-[381px] w-full grid-cols-1 rounded-lg bg-white p-2 xl:w-[276px]">
+      <CardHeader className="items-center pb-0 text-xl sm:text-2xl">
         <CardTitle>{t("orders-status")}</CardTitle>
       </CardHeader>
       <CardContent className="flex-1 pb-0">

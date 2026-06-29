@@ -13,7 +13,7 @@ export default function TopSellingProducts({ topSellingProducts }: TopSellingPro
   const t = useTranslations();
 
   return (
-    <div className="p-4 w-full bg-white rounded-xl">
+    <div className="w-full rounded-xl bg-white p-4">
       {/* Text */}
       <h2 className="text-xl font-bold mb-4 text-black">{t("top-selling-products")}</h2>
 
@@ -35,7 +35,7 @@ export default function TopSellingProducts({ topSellingProducts }: TopSellingPro
                 }
               >
                 {/* Product title and price */}
-                <TableCell className="text-black">
+                <TableCell className="min-w-0 break-words text-black">
                   {product.title.split(" ").splice(0, 5).join(" ")}({product.price}EGP)
                 </TableCell>
 

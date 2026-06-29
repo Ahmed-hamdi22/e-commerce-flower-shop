@@ -8,8 +8,10 @@ export default async function UpdateCategoryWrapper({ params }: { params: { id: 
   const category = await getCategoryById(params.id);
 
   return (
-    <Suspense fallback={<UpdateCategorySkeleton />}>
-      <UpdateCategory params={{ id: params.id }} category={category} />
-    </Suspense>
+    <div className="px-4 py-4 sm:px-6 lg:px-10">
+      <Suspense fallback={<UpdateCategorySkeleton />}>
+        <UpdateCategory params={{ id: params.id }} category={category} />
+      </Suspense>
+    </div>
   );
 }

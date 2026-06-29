@@ -56,21 +56,21 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
 
   return (
     // Main container
-    <div className="bg-white w-full rounded-2xl p-6">
+    <div className="w-full rounded-2xl bg-white p-4 sm:p-6">
       {/* Header */}
-      <div className="flex justify-between items-center mb-4">
+      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         {/* Title and add button */}
-        <h1 className="text-2xl font-semibold text-custom-black">{t("all-products")}</h1>
-        <Button className="bg-custom-rose-900 text-white rounded-lg px-4 py-2  gap-2">
-          <Link href="/dashboard/products/add" className="flex items-center">
+        <h1 className="text-xl font-semibold text-custom-black sm:text-2xl">{t("all-products")}</h1>
+        <Button className="w-full gap-2 rounded-lg bg-custom-rose-900 px-4 py-2 text-white sm:w-auto">
+          <Link href="/dashboard/products/add" className="flex items-center justify-center">
             <LuPlus /> {t("add-a-new-product")}
           </Link>
         </Button>
       </div>
 
       {/* Search bar */}
-      <div className="w-full border border-black/15 flex items-center rounded-lg p-4 mb-4">
-        <LuSearch className="mr-2 text-black/15" />
+      <div className="mb-4 flex w-full items-center rounded-lg border border-black/15 p-3 sm:p-4">
+        <LuSearch className="mr-2 shrink-0 text-black/15" />
         <Input
           type="text"
           placeholder={t("search-for-a-product")}
@@ -81,7 +81,7 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
       </div>
 
       {/* Table */}
-      <Table className="rounded-lg">
+      <Table className="min-w-[760px] rounded-lg">
         {/* Table header */}
         <TableHeader className="bg-custom-white rounded-lg">
           <TableRow className="text-sm font-medium">
@@ -102,7 +102,7 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
                   switch (header) {
                     case t("name"):
                       return (
-                        <TableCell key={`${product._id}-name`} className="font-medium">
+                        <TableCell key={`${product._id}-name`} className="max-w-[220px] break-words font-medium">
                           {product.title}
                         </TableCell>
                       );
@@ -142,11 +142,11 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
                       return (
                         <TableCell
                           key={`${product._id}-actions`}
-                          className="text-right flex items-center"
+                          className="text-right flex items-center gap-2"
                         >
                           <Button
                             asChild
-                            className="bg-custom-blue/10 rounded-lg px-2 py-1 flex items-center text-custom-blue mr-2"
+                            className="bg-custom-blue/10 rounded-lg px-2 py-1 flex items-center text-custom-blue"
                           >
                             <Link
                               href={{

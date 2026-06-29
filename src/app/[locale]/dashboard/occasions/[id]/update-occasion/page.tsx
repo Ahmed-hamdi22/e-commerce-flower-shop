@@ -6,7 +6,7 @@ export default async function UpdateOccasionPage({ params }: { params: { id: str
   const occasionData = await fetchOccasionById(occasionId);
 
   return (
-    <div className="p-3">
+    <div className="px-4 py-4 sm:px-6 lg:px-10">
       {/* Update occasion form */}
       <UpdateOccasionForm initialData={occasionData} occasionId={occasionId} />
     </div>

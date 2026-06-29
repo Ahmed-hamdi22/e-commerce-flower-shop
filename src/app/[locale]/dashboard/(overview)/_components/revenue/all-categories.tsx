@@ -11,18 +11,20 @@ export async function AllCategories() {
   const data = await getAllCategories();
 
   return (
-    <div className="bg-white rounded-xl w-full h-[326px] ">
+    <div className="h-[326px] w-full rounded-xl bg-white">
       {/* Title */}
-      <h1 className="px-5 pt-5 pb-2 text-2xl text-black font-bold">{t("all-catgories")}</h1>
+      <h1 className="px-4 pt-5 pb-2 text-xl font-bold text-black sm:px-5 sm:text-2xl">
+        {t("all-catgories")}
+      </h1>
 
       {/* Scroll area */}
       <ScrollArea className=" h-[260px] bg-white p-5 ">
         <div>
           {data.categories.map((item) => {
             return (
-              <div className="border-b last:border-b-0 p-2 flex justify-between" key={item._id}>
+              <div className="flex gap-3 border-b p-2 last:border-b-0 justify-between" key={item._id}>
                 {/* Item title / Left side */}
-                <h1 className="text-black capitalize">{item.name}</h1>
+                <h1 className="min-w-0 break-words text-black capitalize">{item.name}</h1>
 
                 {/* Item count / Right side*/}
                 <Badge className="bg-gray-100 text-black hover:bg-gray-300">

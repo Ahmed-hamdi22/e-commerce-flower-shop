@@ -56,7 +56,7 @@ export const FileUpload = forwardRef<FileUploadHandle, FileUploadProps>(
     return (
       <div>
         <div
-          className="flex items-center justify-end h-[49px] w-[746px] rounded-lg border border-input"
+          className="flex h-[49px] w-full items-center justify-end rounded-lg border border-input lg:w-[746px]"
           onClick={handleFileClick}
         >
           {/* Display file name in input */}

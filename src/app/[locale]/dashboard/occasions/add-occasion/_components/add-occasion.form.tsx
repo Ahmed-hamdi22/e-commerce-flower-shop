@@ -76,7 +76,7 @@ export default function AddOccasionForm() {
       {/* Title */}
       <Heading>{t("add-a-new-occasion-0")}</Heading>
 
-      <div className="bg-white p-6">
+      <div className="bg-white p-4 sm:p-6">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             {/* Name */}
@@ -84,7 +84,7 @@ export default function AddOccasionForm() {
               name="name"
               control={form.control}
               render={({ field }) => (
-                <FormItem className="w-[746px]">
+                <FormItem className="w-full lg:w-[746px]">
                   {/* Label */}
                   <FormLabel>
                     {t("name")} <span className="text-red-500">*</span>
@@ -135,11 +135,11 @@ export default function AddOccasionForm() {
             />
 
             {/* Submit button */}
-            <div className="pt-28">
+            <div className="pt-10 lg:pt-28">
               <Button
                 disabled={isPending}
                 type="submit"
-                className=" h-[41px] w-[746px] rounded-lg bg-custom-rose-900 hover:bg-custom-rose-900"
+                className="h-[41px] w-full rounded-lg bg-custom-rose-900 hover:bg-custom-rose-900 lg:w-[746px]"
               >
                 {isPending ? t("adding") : t("add-occasion-0")}
               </Button>

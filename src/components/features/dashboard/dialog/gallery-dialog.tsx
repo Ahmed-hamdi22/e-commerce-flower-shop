@@ -52,7 +52,7 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       {/* Main dialog content */}
-      <DialogContent className="max-w-4xl bg-white rounded-3xl shadow-lg rtl:flex-row-reverse">
+      <DialogContent className="w-[94vw] max-w-[94vw] rounded-3xl bg-white shadow-lg sm:max-w-4xl rtl:flex-row-reverse">
         {/* Header read on server only */}
         <DialogHeader className="sr-only">
           <DialogTitle>{t("image-gallery")}</DialogTitle>
@@ -66,9 +66,9 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
           setApi={setApi}
           className="w-full"
         >
-          <div className="relative  my-8">
+          <div className="relative my-6 sm:my-8">
             {/* Carousel images */}
-            <CarouselContent className="w-[789px] h-[480px]">
+            <CarouselContent className="h-[260px] w-full sm:h-[420px] lg:h-[480px]">
               {dialogImages.map((src, index) => (
                 <CarouselItem key={index}>
                   <div className="relative w-full h-full">
@@ -98,7 +98,7 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
                 className="mb-4 rtl:flex-row-reverse"
               />
               {/* Arrows */}
-              <div className="absolute end-12 rtl:flex-row-reverse">
+              <div className="absolute end-8 rtl:flex-row-reverse sm:end-12">
                 <CarouselPrevious className="gap-0 rounded-full border border-rose-300 text-rose-500 hover:bg-rose-100" />
                 <CarouselNext className="gap-0 rounded-full border border-rose-300 text-rose-500 hover:bg-rose-100" />
               </div>

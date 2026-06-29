@@ -10,7 +10,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   const occasionsData = await fetchOccasions({});
 
   return (
-    <div>
+    <div className="px-4 py-4 sm:px-6 lg:px-10">
       <UpdateProductform
         params={{ id: params.id }}
         product={data?.product}

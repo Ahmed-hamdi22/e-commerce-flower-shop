@@ -106,7 +106,7 @@ export default function AddProductForm({ product, categories, occasions }: TypeP
       <Heading>{t("add-a-new-product")}</Heading>
 
       {/* Form */}
-      <div className="bg-white w-full rounded-lg p-6 flex flex-col gap-5 shadow-sm">
+      <div className="flex w-full flex-col gap-5 rounded-lg bg-white p-4 shadow-sm sm:p-6">
         {/* Form add product */}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -128,7 +128,7 @@ export default function AddProductForm({ product, categories, occasions }: TypeP
                       placeholder={t("enter-product-title")}
                       {...field}
                       type="text"
-                      className=" w-4/5  border-blue-gray-100 border-2 rounded-lg"
+                      className="w-full rounded-lg border-2 border-blue-gray-100 lg:w-4/5"
                     />
                   </FormControl>
 
@@ -154,7 +154,7 @@ export default function AddProductForm({ product, categories, occasions }: TypeP
                       placeholder={t("enter-product-description")}
                       rows={5}
                       {...field}
-                      className=" w-4/5 max-h-64 border-2 border-blue-gray-100"
+                      className="max-h-64 w-full border-2 border-blue-gray-100 lg:w-4/5"
                     />
                   </FormControl>
                   <FormMessage />
@@ -162,7 +162,7 @@ export default function AddProductForm({ product, categories, occasions }: TypeP
               )}
             />
 
-            <div className="flex gap-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:w-4/5">
               {/* Price field */}
               <FormField
                 control={form.control}
@@ -180,7 +180,7 @@ export default function AddProductForm({ product, categories, occasions }: TypeP
                         placeholder={t("example-5000")}
                         {...field}
                         type="number"
-                        className=" w-[242px] h-14 border-blue-gray-100 border-2 rounded-lg"
+                        className="h-14 w-full rounded-lg border-2 border-blue-gray-100"
                       />
                     </FormControl>
 
@@ -207,7 +207,7 @@ export default function AddProductForm({ product, categories, occasions }: TypeP
                         placeholder="Example: 5"
                         {...field}
                         type="number"
-                        className=" w-[242px] h-14  border-blue-gray-100 border-2 rounded-lg"
+                        className="h-14 w-full rounded-lg border-2 border-blue-gray-100"
                       />
                     </FormControl>
 
@@ -234,7 +234,7 @@ export default function AddProductForm({ product, categories, occasions }: TypeP
                         placeholder="Example: 5"
                         {...field}
                         type="number"
-                        className=" w-[242px] h-14 border-blue-gray-100 border-2 rounded-lg"
+                        className="h-14 w-full rounded-lg border-2 border-blue-gray-100"
                       />
                     </FormControl>
 
@@ -263,7 +263,7 @@ export default function AddProductForm({ product, categories, occasions }: TypeP
                       placeholder="Example: 200"
                       {...field}
                       type="number"
-                      className=" w-4/5  border-blue-gray-100 border-2 rounded-lg"
+                      className="w-full rounded-lg border-2 border-blue-gray-100 lg:w-4/5"
                     />
                   </FormControl>
 
@@ -296,7 +296,7 @@ export default function AddProductForm({ product, categories, occasions }: TypeP
                       {t("category")}
                       <span className="text-custom-red-100 ps-1">*</span>
                     </FormLabel>
-                    <div className="relative w-4/5">
+                    <div className="relative w-full lg:w-4/5">
                       <Input
                         readOnly
                         value={field.value || ""}
@@ -349,7 +349,7 @@ export default function AddProductForm({ product, categories, occasions }: TypeP
                       {t("occasion")}
                       <span className="text-custom-red-100 ps-1">*</span>
                     </FormLabel>
-                    <div className="relative w-4/5">
+                    <div className="relative w-full lg:w-4/5">
                       <Input
                         readOnly
                         value={field.value || ""}
@@ -380,7 +380,7 @@ export default function AddProductForm({ product, categories, occasions }: TypeP
             />
 
             {/* Image field */}
-            <div className="flex gap-5">
+            <div className="grid grid-cols-1 gap-5 lg:w-4/5 xl:grid-cols-2">
               <FormField
                 control={form.control}
                 name="image"
@@ -393,11 +393,11 @@ export default function AddProductForm({ product, categories, occasions }: TypeP
                     </FormLabel>
 
                     <FormControl>
-                      <div className="relative w-4/5">
+                      <div className="relative w-full">
                         {/* Label */}
                         <FormLabel
                           htmlFor="image-upload"
-                          className="flex items-center justify-between cursor-pointer border w-[364px] h-12 border-gray-300 rounded-md px-4 py-2"
+                          className="flex h-12 w-full cursor-pointer items-center justify-between rounded-md border border-gray-300 px-4 py-2"
                         >
                           {/* Show selected file name */}
                           <div className="flex-1 min-w-0 text-left">
@@ -448,11 +448,11 @@ export default function AddProductForm({ product, categories, occasions }: TypeP
                     </FormLabel>
 
                     <FormControl>
-                      <div className="relative w-4/5">
+                      <div className="relative w-full">
                         {/* Label */}
                         <FormLabel
                           htmlFor="image-upload"
-                          className="flex items-center justify-between cursor-pointer border w-[364px] h-12 border-gray-300 rounded-md px-4 py-2"
+                          className="flex h-12 w-full cursor-pointer items-center justify-between rounded-md border border-gray-300 px-4 py-2"
                         >
                           {/* Show selected file name */}
                           <div className="flex-1 min-w-0 text-left">
@@ -490,7 +490,7 @@ export default function AddProductForm({ product, categories, occasions }: TypeP
             <Button
               disabled={!form.formState.isValid}
               type="submit"
-              className=" bg-custom-rose-900 w-4/5 text-white h-10 rounded-lg mt-16 capitalize font-semibold text-sm"
+              className="mt-10 h-10 w-full rounded-lg bg-custom-rose-900 text-sm font-semibold capitalize text-white lg:mt-16 lg:w-4/5"
             >
               {isLoading ? <Loader className="text-center" /> : t("add-product")}
             </Button>

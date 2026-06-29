@@ -43,14 +43,14 @@ export default function NavigationSection() {
   ];
 
   return (
-    <div className="w-56 flex justify-center items-center flex-col">
+    <div className="flex w-full items-center justify-center flex-col lg:w-56">
       {/* Logo */}
-      <Link href="/dashboard">
+      <Link href="/dashboard" className="hidden lg:block">
         <Image src="/assets/images/logo.png" alt="rose-app-logo" width={86} height={0} />
       </Link>
 
       {/* Preview website */}
-      <div className="w-56 flex flex-col gap-4 mt-9">
+      <div className="mt-4 flex w-full flex-col gap-3 lg:mt-9 lg:w-56 lg:gap-4">
         <Link
           href="/"
           className="bg-custom-rose-900 capitalize mb-2 text-base flex justify-center items-center p-2 rounded-lg font-semibold text-white transition duration-300 hover:text-custom-rose-900 hover:bg-custom-rose-50"

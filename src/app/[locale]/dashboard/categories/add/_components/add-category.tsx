@@ -57,7 +57,7 @@ export default function AddCategory() {
       {/* Heading */}
       <Heading>{t("add-category")}</Heading>
 
-      <div className="bg-white w-full rounded-lg p-6 shadow-sm">
+      <div className="w-full rounded-lg bg-white p-4 shadow-sm sm:p-6">
         {/* Form add category*/}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -79,7 +79,7 @@ export default function AddCategory() {
                       placeholder={t("category-name-placeholder")}
                       {...field}
                       type="text"
-                      className=" w-4/5  border-blue-gray-100 border-2 rounded-lg"
+                      className="w-full rounded-lg border-2 border-blue-gray-100 lg:w-4/5"
                     />
                   </FormControl>
 
@@ -102,7 +102,7 @@ export default function AddCategory() {
                   </FormLabel>
 
                   <FormControl>
-                    <div className="relative w-4/5">
+                    <div className="relative w-full lg:w-4/5">
                       {/* Label */}
                       <FormLabel
                         htmlFor="image-upload"
@@ -151,7 +151,7 @@ export default function AddCategory() {
             <Button
               disabled={!form.formState.isValid}
               type="submit"
-              className="bg-custom-rose-900 w-4/5  text-white h-10 rounded-lg mt-16 capitalize font-semibold text-sm"
+              className="mt-10 h-10 w-full rounded-lg bg-custom-rose-900 text-sm font-semibold capitalize text-white lg:mt-16 lg:w-4/5"
             >
               {isLoading ? <Loader className="text-center" /> : t("add-category")}
             </Button>

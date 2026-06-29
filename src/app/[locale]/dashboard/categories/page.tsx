@@ -19,12 +19,12 @@ export default async function CategoriesPage({ searchParams }: { searchParams: S
   const data = await fetchCategories(searchParams);
 
   return (
-    <div className="px-10">
+    <div className="px-4 py-4 sm:px-6 lg:px-10">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <Heading>{t("all-categoires")}</Heading>
 
-        <Button className="bg-custom-rose-900 hover:bg-custom-rose-900/80" asChild>
+        <Button className="w-full bg-custom-rose-900 hover:bg-custom-rose-900/80 sm:w-auto" asChild>
           <Link href={`/${locale}/dashboard/categories/add`}>
             <Plus /> {t("add-a-new-category")}
           </Link>

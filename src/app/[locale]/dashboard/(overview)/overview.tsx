@@ -18,7 +18,7 @@ export default async function Overview() {
     <>
       <Header paths={breadcrumbPaths} />
       <div className="bg-custom-white px-4 py-7">
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
           {/* Allstatscomp */}
           <AllStatsComp />
 
@@ -26,13 +26,13 @@ export default async function Overview() {
           <AllCategories />
         </div>
 
-        <div className="flex gap-6 mt-6 w-full">
-          <div className="min-w-[276px]">
+        <div className="mt-6 flex w-full flex-col gap-6 xl:flex-row">
+          <div className="w-full xl:w-[276px] xl:shrink-0">
             {/* order statue */}
             <OrderStatus />
           </div>
 
-          <div className="flex-1">
+          <div className="min-w-0 flex-1">
             {/* Revenue chart */}
             <RevenueChart
               dailyRevenue={statistics.orders.dailyRevenue || []}
@@ -41,7 +41,7 @@ export default async function Overview() {
           </div>
         </div>
 
-        <div className="flex justify-between gap-6 mt-6">
+        <div className="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-2">
           {/* Top-selling products */}
           <TopSellingProducts topSellingProducts={statistics.products.topSellingProducts || []} />
 

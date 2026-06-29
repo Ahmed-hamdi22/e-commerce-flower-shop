@@ -10,7 +10,7 @@ export default async function AddProductpage({ params }: { params: { id: string 
   const occasionsData = await fetchOccasions({});
 
   return (
-    <>
+    <div className="px-4 py-4 sm:px-6 lg:px-10">
       {/* Add product page */}
       <AddProductForm
         params={{ id: params.id }}
@@ -18,6 +18,6 @@ export default async function AddProductpage({ params }: { params: { id: string 
         categories={categoriesData?.categories || []}
         occasions={occasionsData?.occasions || []}
       />
-    </>
+    </div>
   );
 }

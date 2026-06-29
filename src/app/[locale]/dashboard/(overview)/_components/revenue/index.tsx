@@ -46,12 +46,12 @@ export default function RevenueChart({ dailyRevenue, monthlyRevenue }: RevenueCh
   const maxValue = Math.max(...data.map((d) => d.value));
 
   return (
-    <div>
+    <div className="min-w-0">
       <Card>
-        <CardContent className="rounded-xl bg-white w-full h-[381px] ">
-          <div className="flex justify-between items-center">
+        <CardContent className="h-[381px] w-full rounded-xl bg-white p-4 sm:p-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             {/* Text */}
-            <h2 className="text-2xl font-semibold">{t("revenue")}</h2>
+            <h2 className="text-xl font-semibold sm:text-2xl">{t("revenue")}</h2>
 
             {/* Toggle button */}
             <ChartToggle isMonthly={isMonthly} setIsMonthly={setIsMonthly} />
@@ -59,7 +59,7 @@ export default function RevenueChart({ dailyRevenue, monthlyRevenue }: RevenueCh
 
           <div dir="ltr">
             <ResponsiveContainer width="100%" height={315}>
-              <AreaChart data={data} margin={{ top: 30, right: 50, left: 25, bottom: 0 }}>
+              <AreaChart data={data} margin={{ top: 30, right: 12, left: 0, bottom: 0 }}>
                 <CartesianGrid vertical={true} horizontal={false} />
 
                 {/* Y-axis */}

@@ -32,7 +32,7 @@ export function DeleteConfirmationDialog({ isOpen, onClose, onConfirm, itemName 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       {/* Dialog container */}
-      <DialogContent className="text-center max-w-md sm:max-w-lg min-h-[371px] rtl:space-x-reverse">
+      <DialogContent className="min-h-[371px] w-[92vw] max-w-[92vw] text-center sm:max-w-lg rtl:space-x-reverse">
         {/* Header read on server only */}
         <DialogHeader className="sr-only">
           <DialogTitle>{t("delete-title")}</DialogTitle>
@@ -54,12 +54,12 @@ export function DeleteConfirmationDialog({ isOpen, onClose, onConfirm, itemName 
         </p>
 
         {/* Dialog footer */}
-        <DialogFooter className="flex justify-around w-full">
+        <DialogFooter className="flex w-full flex-col gap-3 sm:flex-row sm:justify-around">
           {/* Cancel button */}
           <Button
             variant="outline"
             onClick={onClose}
-            className="w-52 h-10 rounded-md me-2 capitalize text-sm"
+            className="h-10 w-full rounded-md capitalize text-sm sm:w-52"
           >
             {t("cancel")}
           </Button>
@@ -67,7 +67,7 @@ export function DeleteConfirmationDialog({ isOpen, onClose, onConfirm, itemName 
           {/* Confirm button */}
           <Button
             onClick={handleConfirm}
-            className="w-52 h-10  bg-flamingo hover:bg-flamingo/80 text-sm rounded-md text-white capitalize "
+            className="h-10 w-full rounded-md bg-flamingo text-sm capitalize text-white hover:bg-flamingo/80 sm:w-52"
           >
             {t("confirm")}
           </Button>

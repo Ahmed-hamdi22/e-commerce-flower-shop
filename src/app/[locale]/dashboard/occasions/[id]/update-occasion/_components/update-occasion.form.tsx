@@ -88,7 +88,7 @@ export default function UpdateOccasionForm({
               name="name"
               control={form.control}
               render={({ field }) => (
-                <FormItem className="w-[746px]">
+                <FormItem className="w-full lg:w-[746px]">
                   {/* Label */}
                   <FormLabel htmlFor="name">
                     {t("name")} <span className="text-red-500">*</span>
@@ -135,7 +135,7 @@ export default function UpdateOccasionForm({
               <Button
                 disabled={isPending || !form.formState.isDirty}
                 type="submit"
-                className=" h-[41px] w-[746px] rounded-lg bg-custom-rose-900 hover:bg-custom-rose-900"
+                className="h-[41px] w-full rounded-lg bg-custom-rose-900 hover:bg-custom-rose-900 lg:w-[746px]"
               >
                 {isPending ? t("updating-0") : t("update-occasion")}
               </Button>

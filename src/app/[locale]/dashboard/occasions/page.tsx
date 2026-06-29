@@ -18,12 +18,12 @@ export default async function OccasionPage({ searchParams }: { searchParams: Sea
   const data = await fetchOccasions(searchParams);
 
   return (
-    <div className="px-10">
-      <div className="flex justify-between items-center">
+    <div className="px-4 py-4 sm:px-6 lg:px-10">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         {/* Header */}
         <Heading>{t("all-occasions")}</Heading>
 
-        <Button className="bg-custom-rose-900" asChild>
+        <Button className="w-full bg-custom-rose-900 sm:w-auto" asChild>
           <Link href={`/${locale}/dashboard/occasions/add-occasion`}>
             <Plus /> {t("add-a-new-occassion")}
           </Link>

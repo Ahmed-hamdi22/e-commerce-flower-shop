@@ -138,7 +138,7 @@ export default function UpdateProductform({ params, product, categories, occasio
                       placeholder="Flowers"
                       {...field}
                       type="text"
-                      className="w-4/5 border-blue-gray-100 border-2 rounded-lg"
+                      className="w-full rounded-lg border-2 border-blue-gray-100 lg:w-4/5"
                     />
                   </FormControl>
 
@@ -164,7 +164,7 @@ export default function UpdateProductform({ params, product, categories, occasio
                       placeholder="Enter product description"
                       rows={5}
                       {...field}
-                      className=" w-4/5 max-h-64 border-2 border-blue-gray-100"
+                      className="max-h-64 w-full border-2 border-blue-gray-100 lg:w-4/5"
                     />
                   </FormControl>
                   <FormMessage />
@@ -173,7 +173,7 @@ export default function UpdateProductform({ params, product, categories, occasio
             />
 
             {/* Price feild */}
-            <div className="flex gap-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:w-4/5">
               {/* Price */}
               <FormField
                 control={form.control}
@@ -191,7 +191,7 @@ export default function UpdateProductform({ params, product, categories, occasio
                         placeholder="Example: 5000"
                         {...field}
                         type="number"
-                        className=" w-[242px] h-14 border-blue-gray-100 border-2 rounded-lg"
+                        className="h-14 w-full rounded-lg border-2 border-blue-gray-100"
                       />
                     </FormControl>
 
@@ -218,7 +218,7 @@ export default function UpdateProductform({ params, product, categories, occasio
                         placeholder="Example: 5"
                         {...field}
                         type="number"
-                        className=" w-[242px] h-14  border-blue-gray-100 border-2 rounded-lg"
+                        className="h-14 w-full rounded-lg border-2 border-blue-gray-100"
                       />
                     </FormControl>
 
@@ -245,7 +245,7 @@ export default function UpdateProductform({ params, product, categories, occasio
                         placeholder="Example: 5"
                         {...field}
                         type="number"
-                        className=" w-[242px] h-14 border-blue-gray-100 border-2 rounded-lg"
+                        className="h-14 w-full rounded-lg border-2 border-blue-gray-100"
                       />
                     </FormControl>
 
@@ -274,7 +274,7 @@ export default function UpdateProductform({ params, product, categories, occasio
                       placeholder="Example: 200"
                       {...field}
                       type="number"
-                      className=" w-4/5  border-blue-gray-100 border-2 rounded-lg"
+                      className="w-full rounded-lg border-2 border-blue-gray-100 lg:w-4/5"
                     />
                   </FormControl>
 
@@ -306,7 +306,7 @@ export default function UpdateProductform({ params, product, categories, occasio
                       {t("category")}
                       <span className="text-custom-red-100 ps-1">*</span>
                     </FormLabel>
-                    <div className="relative w-4/5">
+                    <div className="relative w-full lg:w-4/5">
                       <Input
                         readOnly
                         value={field.value || ""}
@@ -359,7 +359,7 @@ export default function UpdateProductform({ params, product, categories, occasio
                       {t("occasion")}
                       <span className="text-custom-red-100 ps-1">*</span>
                     </FormLabel>
-                    <div className="relative w-4/5">
+                    <div className="relative w-full lg:w-4/5">
                       <Input
                         readOnly
                         value={field.value || ""}
@@ -390,7 +390,7 @@ export default function UpdateProductform({ params, product, categories, occasio
             />
 
             {/* Trigger to open gallery dialog */}
-            <div className="flex justify-end w-4/5">
+            <div className="flex w-full justify-end lg:w-4/5">
               <div className="text-stats-orders-primary flex items-center gap-2 font-normal text-sm  border-2 border-blue-gray-100 rounded-lg p-2 ">
                 <Image className="w-4 h-4" />
                 <button
@@ -414,7 +414,7 @@ export default function UpdateProductform({ params, product, categories, occasio
             <Button
               disabled={!form.formState.isValid}
               type="submit"
-              className="bg-custom-rose-900 w-4/5 text-white h-10 rounded-lg mt-16 capitalize font-semibold text-sm"
+              className="mt-10 h-10 w-full rounded-lg bg-custom-rose-900 text-sm font-semibold capitalize text-white lg:mt-16 lg:w-4/5"
             >
               {isLoading ? <Loader className="text-center" /> : "update product"}
             </Button>

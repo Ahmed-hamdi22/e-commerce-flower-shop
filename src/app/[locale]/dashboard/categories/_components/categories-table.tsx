@@ -43,7 +43,7 @@ export function CategoriesTable({ data }: { data: Category[] }) {
   return (
     <>
       {/* Table header */}
-      <Table className="mt-10 w-full px-20 mx-auto">
+      <Table className="mx-auto mt-6 min-w-[640px] w-full lg:mt-10">
         <TableHeader className="w-full bg-tableHeader">
           <TableRow className="flex w-full mt-5">
             <TableHead className="flex-1 text-black">{t("name")}</TableHead>
@@ -60,10 +60,10 @@ export function CategoriesTable({ data }: { data: Category[] }) {
                 <TableCell className="flex-1">
                   {item.productsCount} {t("products-0")}
                 </TableCell>
-                <TableCell className="flex-1 flex justify-end">
+                <TableCell className="flex-1 flex justify-end gap-2">
                   <Button
                     size="sm"
-                    className="text-stats-orders-primary bg-stats-orders-bg hover:bg-stats-order-bg/20 mr-2"
+                    className="text-stats-orders-primary bg-stats-orders-bg hover:bg-stats-order-bg/20"
                     asChild
                   >
                     <Link href={`/dashboard/categories/${item._id}/update-category`}>

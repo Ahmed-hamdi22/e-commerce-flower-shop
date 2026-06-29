@@ -27,11 +27,11 @@ export default function Header({ paths = [] }: HeaderProps) {
 
   return (
     // Header container
-    <div className="h-16 border-b border-custom-rose-100 bg-white flex items-center px-4">
+    <div className="min-h-16 border-b border-custom-rose-100 bg-white flex items-center overflow-x-auto px-4 py-3">
       {/* Breadcrumb */}
       <Breadcrumb>
         {/* Breadcrumb list */}
-        <BreadcrumbList>
+        <BreadcrumbList className="min-w-max flex-nowrap">
           {paths.map((path, index) => {
             const isLast = index === paths.length - 1;
             const isOnly = paths.length === 1;
