@@ -12,6 +12,18 @@ function paymentError<T = unknown>(message = "Please login first"): PaymentActio
 async function getAuthenticatedToken() {
   return getToken();
 }
+
+function normalizeShippingAddress(shippingAddress: ShippingAddress): ShippingAddress {
+  const lat = shippingAddress.lat?.trim();
+  const long = shippingAddress.long?.trim();
+
+  return {
+    street: shippingAddress.street.trim(),
+    phone: shippingAddress.phone.trim(),
+    city: shippingAddress.city.trim(),
+    ...(lat && long ? { lat, long } : {}),
+  };
+}
 // checkoutWithStripe
 
 export async function checkoutWithStripe(
@@ -32,7 +44,7 @@ export async function checkoutWithStripe(
       },
       cache: "no-store",
       body: JSON.stringify({
-        shippingAddress,
+        shippingAddress: normalizeShippingAddress(shippingAddress),
       }),
     });
 
@@ -115,7 +127,7 @@ export async function createCashOrder(
       },
       cache: "no-store",
       body: JSON.stringify({
-        shippingAddress,
+        shippingAddress: normalizeShippingAddress(shippingAddress),
       }),
     });
 

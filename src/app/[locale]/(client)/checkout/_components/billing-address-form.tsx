@@ -24,9 +24,8 @@ import { Locale } from "@/i18n/routing";
 // Type
 type AddressFormProps = {
   onSubmitAddress: (address: ShippingAddress) => void;
-  setOpen: (value: string) => void;
 };
-export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormProps) {
+export default function AddressForm({ onSubmitAddress }: AddressFormProps) {
   // Translation
   const t = useTranslations();
   const locale = useLocale() as Locale;
@@ -43,7 +42,7 @@ export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormPro
         /^\+?\d{1,3}?[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/,
         t("invalid-phone-number-format-must-start-with-a-country-code"),
       ),
-    city: z.string().optional(),
+    city: z.string().trim().min(1, t("city-is-required")),
     lat: z.string().trim().optional(),
     long: z.string().trim().optional(),
   });
@@ -75,18 +74,15 @@ export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormPro
 
   //  Handle submission address form
   const onSubmit = (values: Inputs) => {
-    const address: ShippingAddress = {
-      ...values,
-    };
+    const lat = values.lat?.trim();
+    const long = values.long?.trim();
 
-    if (!values.lat?.trim()) delete address.lat;
-    else address.lat = values.lat.trim();
-
-    if (!values.long?.trim()) delete address.long;
-    else address.long = values.long.trim();
-
-    onSubmitAddress?.(address);
-    setOpen("paymentform");
+    onSubmitAddress({
+      street: values.street.trim(),
+      phone: values.phone.trim(),
+      city: values.city,
+      ...(lat && long ? { lat, long } : {}),
+    });
   };
 
   return (

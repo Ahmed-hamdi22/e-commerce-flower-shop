@@ -18,13 +18,7 @@ export default function CheckoutContent({ cart }: { cart: Cart }) {
   const locale = useLocale() as Locale;
 
   // Initialize state
-  const [shippingAddress, setShippingAddress] = useState<ShippingAddress>({
-    street: "",
-    phone: "",
-    city: "",
-    lat: "",
-    long: "",
-  });
+  const [shippingAddress, setShippingAddress] = useState<ShippingAddress | null>(null);
 
   // State
   const [open, setOpen] = useState("billing-address");
@@ -43,10 +37,12 @@ export default function CheckoutContent({ cart }: { cart: Cart }) {
           collapsible
           className="space-y-4"
           value={open}
-          onValueChange={setOpen}
+          onValueChange={(value) => {
+            if (value !== "paymentform" || shippingAddress) setOpen(value);
+          }}
         >
           {/* Address form  */}
-          <AddressForm onSubmitAddress={handleAddressSubmit} setOpen={setOpen} />
+          <AddressForm onSubmitAddress={handleAddressSubmit} />
 
           {/* Payment form */}
           <PaymentForm shippingAddress={shippingAddress} />

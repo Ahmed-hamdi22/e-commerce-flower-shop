@@ -15,7 +15,7 @@ import { usePayment } from "@/hooks/use-payment";
 
 //  Type
 type PaymentFormProps = {
-  shippingAddress: ShippingAddress;
+  shippingAddress: ShippingAddress | null;
 };
 
 export function PaymentForm({ shippingAddress }: PaymentFormProps) {
@@ -31,6 +31,8 @@ export function PaymentForm({ shippingAddress }: PaymentFormProps) {
   // HandelSubmit
   const { checkoutWithStripe, createCashOrder } = usePayment();
   const onSubmit = () => {
+    if (!shippingAddress) return;
+
     if (paymentType === "card") {
       checkoutWithStripe(shippingAddress);
     } else {
@@ -41,8 +43,9 @@ export function PaymentForm({ shippingAddress }: PaymentFormProps) {
   return (
     <AccordionItem value="paymentform">
       <AccordionTrigger
+        disabled={!shippingAddress}
         className="text-custom-rose-900 font-inter fw-600 text-base
-          leading-[19.2px] capitalize border rounded-[5px] py-4 px-5"
+          leading-[19.2px] capitalize border rounded-[5px] py-4 px-5 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {t("your-payment-info")}
       </AccordionTrigger>
